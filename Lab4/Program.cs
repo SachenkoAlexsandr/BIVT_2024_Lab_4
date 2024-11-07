@@ -387,29 +387,72 @@ public void Draw(int[,] array)
     return A;
 }
     public int[,] Task_2_3(int[,] A)
+{
+    if (A.GetLength(0) != 10 || A.GetLength(1) != 5) return null;
+    // code here
+    for (int j = 0; j < A.GetLength(1); j++)
     {
-        // code here
+        int iMax = 0, sumAfterMax = 0;
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            if (A[i, j] > A[iMax, j])
+            {
+                iMax = i;
+                sumAfterMax = 0;
+            }
+            else
+            {
+                sumAfterMax += A[i, j];
+            }
+        }
+        if (iMax < 5) A[0, j] = sumAfterMax;
 
-        // end
-
-        return A;
     }
+            // end
+
+            return A;
+}
     public int[,] Task_2_4(int[,] A, int[] B)
+{
+    // code here
+    if (A.GetLength(0) != 7 || A.GetLength(1) != 5 || B.Length!=5) return null;
+
+    for (int j = 0; j < A.GetLength(1); j++)
     {
-        // code here
+        int iMax = 0;
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            if (A[i, j] > A[iMax, j])
+                iMax = i;
+        }
+        if (B[j] > A[iMax, j]) A[iMax, j] = B[j];
 
-        // end
-
-        return A;
     }
-    public double[,] Task_2_5(double[,] A)
+    // end
+
+    return A;
+}
+    public double[,] Task_2_5(double[,] A) ///////        ERROR
+{
+    // code here
+    if (A.GetLength(0) != 7 || A.GetLength(1) != 5) return null;
+
+    for (int j = 0; j < A.GetLength(1); j++)
     {
-        // code here
+        int iMax = 0;
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            if (A[i, j] > A[iMax, j])
+                iMax = i;
+        }
+        if ((A[0, j] + A[A.GetLength(0) - 1, j]) / 2.0 > A[iMax, j]) A[iMax, j] = (A[0, j] + A[A.GetLength(0) - 1, j]) / 2.0;
+        else A[iMax, j] = iMax; //+1      /////////     index вместо номера     
 
-        // end
-
-        return A;
     }
+    // end
+
+    return A;
+}
     public int[,] Task_2_6(int n)
     {
         int[,] answer = default(int[,]);
