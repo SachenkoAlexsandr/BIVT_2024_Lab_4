@@ -362,14 +362,30 @@ public void Draw(int[,] array)
     return A;
 }
     #endregion
-    public int[,] Task_2_2(int[,] A)
+    public int[,] Task_2_2(int[,] A)      ///////        ERROR
+{
+    // code here
+    if (A.GetLength(0) != 7 || A.GetLength(1) != 5) return null;
+    // end
+    Draw(A);
+    for (int j = 0; j<A.GetLength(1); j++)
     {
-        // code here
-
-        // end
-
-        return A;
+        int iMax = 0, countP = 0, countN = 0;
+        for (int i = 0; i< A.GetLength(0); i++)
+        {
+            if (A[i,j] > 0) countP++;
+            if (A[i, j] < 0) countN++;
+            if (A[i,j] > A[iMax,j]) iMax = i;
+        }
+        if (countP > countN)
+        {
+            A[iMax, j] = 0;
+        }
+        else A[iMax, j] = iMax;// + 1;                     /////////     index вместо номера
     }
+    Draw(A);
+    return A;
+}
     public int[,] Task_2_3(int[,] A)
     {
         // code here
