@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Drawing;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
 
@@ -11,40 +12,85 @@ public class Program
     public static void Main()
     {
         Program program = new Program();
-
+        //int[,] A3 = {
+        //    { 1, 2, 3, 4, 5 },
+        //    { 5, 6, 7, 8 , 5},
+        //    { 9, 10, 11, 12,5 },
+        //    { 13, 14, 15, 16,5 }
+        //};
+        //int[,] A6 = {
+        //        { 1, 2, 3, 4, 5, 6, 7 },
+        //        { 5, 6, 7, 8, -9, 10, 11 },
+        //        { 9, 10, -11, -12, -13, -14, -15 },
+        //        { -13, -14, 15, 16, 17, 18, -19 }
+        //    };
+        //int[,] A12 = {
+        //        { 1, 2, 3, 4, -5, -6, -7 },
+        //        { 5, 11, -17, 11, -10, 6, 5 },
+        //        { -9, -10, -11, -14, -15, -16, 1 },
+        //        { -9, -10, -11, -14, 15, -6, -2 },
+        //        { -9, -10, -11, -14, -15, 6, 4 },
+        //        { 0, -2, -3, -4, -5, 0, 5 }
+        //    };
+        //int[,] A18 = {
+        //        { 1, 2, -3, 4, -5, 6, 7 },
+        //        { 5, 6, -7, 8, 9, -10, -11 },
+        //        { 9, 10, 11, 12, 13, 14, 15 },
+        //        { -13, 14, 15, 16, 17, -18, -19 },
+        //        { 0, -1, -2, -3, -4, -5, -6 }
+        //    };
+        //int[,] A21 = {
+        //        { 1, 2, -3, 4, -5, 7, 0 },
+        //        { 5, 6, -7, 8, 9, -11, 0 },
+        //        { 9, 10, 11, 12, 13, 15, 0 },
+        //        { -13, 14, 15, 16, 17, -19,0 },
+        //        { 0, -1, -2, -3, -4, -6, 0 }
+        //    };
+        int[,] A27 = {
+                { 1, 2, -3, 7, -5, 7, 7 },
+                { 5, 6, -7, 8, 9, 9, -11 },
+                { 9, 10, 11, 12, 13, 15, 15 },
+                { -13, 14, 25, 25, 16, 17, -19 },
+                { 0, 0, -1, -2, -3, -4, -6 }
+            };
+        //program.Task_1_3(A3);
+        //program.Task_1_6(A6);
+        //program.Task_1_12(A12);
+        //program.Task_1_18(A18, A18.GetLength(0), A18.GetLength(1));
+        //program.Task_1_21(A21);
+        program.Task_1_27(A27);
     }
 
     public void Draw(double[,] array)
-{
-
-    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
 
-            Console.Write($"{array[i, j]}  ");
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+
+                Console.Write($"{array[i, j]}  ");
+            }
+            Console.WriteLine();
         }
+
         Console.WriteLine();
     }
-
-    Console.WriteLine();
-}
-public void Draw(int[,] array)
-{
-
-    for (int i = 0; i < array.GetLength(0); i++)
+    public void Draw(int[,] array)
     {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
 
-            Console.Write($"{array[i, j]}  ");
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+
+                Console.Write($"{array[i, j]}  ");
+            }
+            Console.WriteLine();
         }
+
         Console.WriteLine();
     }
-
-    Console.WriteLine();
-}
-    
     #region Level 1
     public int Task_1_1(int[,] A)
     {
@@ -66,11 +112,17 @@ public void Draw(int[,] array)
     }
     public int Task_1_3(int[,] A)
     {
+        
         int answer = 0;
+        if (A.GetLength(0) != 4 || A.GetLength(1) != 4) return answer;
         // code here
-
+        for (int i = 0; i < A.Length/4; i++)
+        {
+            answer += A[i,i];
+            Console.WriteLine(A.Length);
+        }
         // end
-
+        Console.WriteLine(answer);
         return answer;
     }
     public (int, int) Task_1_4(int[,] A)
@@ -93,9 +145,20 @@ public void Draw(int[,] array)
     }
     public int[] Task_1_6(int[,] A)
     {
-        int[] answer = default(int[]);
+        if (A.GetLength(0) != 4 || A.GetLength(1) != 7) return null;
+        int[] answer = new int[4];
         // code here
+        for (int i = 0; i< 4; i++)
+        {
+            int JMin = 0;
+            for (int j = 1; j < 7; j++)
+            {
+                if (A[i, j] < A[i,JMin]) JMin = j;
+            }
+            answer[i] = JMin;
+            Console.WriteLine(JMin);
 
+        }
         // end
 
         return answer;
@@ -121,7 +184,21 @@ public void Draw(int[,] array)
     public int[,] Task_1_9(int[,] A)
     {
         // code here
+        if (A.GetLength(0) != 5 || A.GetLength(1) != 7) return null;
+        // code here
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            int JMax = 0;
+            for (int j = 1; j < A.GetLength(1); j++)
+            {
+                if (A[i, j] > A[i, JMax]) JMax = j;
+            }
+            int temp = A[i,JMax];
+            A[i, JMax] = A[i, 0];
+            A[i,0]=temp;
+            //Console.WriteLine(JMin);
 
+        }
         // end
 
         return A;
@@ -144,10 +221,42 @@ public void Draw(int[,] array)
     }
     public int[,] Task_1_12(int[,] A)
     {
+        if (A.GetLength(0) != 6 || A.GetLength(1) != 7) return null;
+
+        int iMax = 0, jMax = 0;
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            for (int j = 0; j < A.GetLength(1); j++)
+            {
+                if (A[i, j] > A[iMax, jMax])
+                {
+                    jMax = j;
+                    iMax = i;
+                }
+            }
+            //Console.WriteLine(JMin);
+
+        }
+        //Console.WriteLine($"{iMax}   {jMax}");
         // code here
+        int[,] a = new int[5, 6];
+        int newI = 0, newJ = 0;
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            if (iMax == i) continue;
+            newJ = 0;
+            for (int j = 0; j < A.GetLength(1); j++)
+            {
+                if (jMax == j) continue;
+                a[newI,newJ] = A[i,j];
+                newJ++;
+            }
+            newI++;
+            //Console.WriteLine(JMin);
 
+        }
         // end
-
+        A = a;
         return A;
     }
     public int[,] Task_1_13(int[,] A)
@@ -170,7 +279,19 @@ public void Draw(int[,] array)
     public int[,] Task_1_15(int[,] A)
     {
         // code here
+        if (A.GetLength(0) != 5 || A.GetLength(1) != 7) return null;
+        // code here
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            int JMax = 0;
+            for (int j = 1; j < A.GetLength(1); j++)
+            {
+                if (A[i, j] > A[i, JMax]) JMax = j;
+            }
+            A[i, JMax]*= i+1;
+            //Console.WriteLine(JMin);
 
+        }
         // end
 
         return A;
@@ -191,11 +312,40 @@ public void Draw(int[,] array)
 
         return B;
     }
-    public int[,] Task_1_18(int[,] D, int n, int m)
+    public int[,] Task_1_18(int[,] D, int n, int m)           ///////////////////////
     {
         // code here
+        Draw(D);
 
+        for (int i = 0; i < n; i++)
+        {
+            if (D[i, 0] < 0) continue;
+            int jMax = 0;
+            for (int j = 1; j < m; j++)
+            {
+                if (D[i, j] < 0) break;
+                if (D[i,j]> D[i,jMax]) jMax = j;
+            }
+            if (jMax < m - 1)
+            {
+                int temp = D[i, jMax];
+                D[i, jMax] = D[i, jMax + 1];
+                D[i, jMax + 1] = temp;
+            }
+            //for (int j = m-1; j > jMax; j--)
+            //{
+            //    if (D[i, j] < 0)
+            //    {
+            //        int temp = D[i, jMax];
+            //        D[i,jMax] = D[i,j];
+            //        D[i,j] = temp;
+            //        break;
+            //    }
+            //}
+        }
+        Console.WriteLine();
         // end
+        Draw(D);
 
         return D;
     }
@@ -218,9 +368,23 @@ public void Draw(int[,] array)
     public int[,] Task_1_21(int[,] H)
     {
         // code here
+        if (H.GetLength(0) != 5 || H.GetLength(1) != 7) return null;
+        Draw(H);
 
+        for ( int i = 0; i < H.GetLength(0); i++)
+        {
+            int jMax = 0;
+            for (int j = 1; j <  H.GetLength(1)-1; j++)
+            {
+                if (H[i, j] > H[i,jMax]) jMax = j;
+            }
+            int temp = H[i, jMax];
+            H[i, H.GetLength(1) - 1] = H[i, H.GetLength(1) - 2];
+            H[i, H.GetLength(1) - 2] = temp;
+        }
         // end
-
+        Console.WriteLine();
+        Draw(H);
         return H;
     }
     public double[,] Task_1_22(double[,] Z)
@@ -241,8 +405,31 @@ public void Draw(int[,] array)
     }
     public double[,] Task_1_24(double[,] Y)
     {
+        if (Y.GetLength(0) != 6 || Y.GetLength(1) != 5) return null;
         // code here
-
+        for (int i = 0; i < Y.GetLength(0); i++)
+        {
+            int jMax = 0;
+            for (int j = 1; j < Y.GetLength(1); j++)
+            {
+                if (Y[i, jMax] < Y[i,j]) jMax = j;
+            }
+            double mid = 0, count = 0;
+            for (int j = jMax; j < Y.GetLength(1); j++)
+            {
+                if (j == jMax) continue;
+                if (Y[i, j] > 0)
+                {
+                    mid += Y[i, j];
+                    count++;
+                }
+            }
+            if (mid!=0) mid/=count;
+            for (int j = 0; j < jMax; j++)
+            {
+                if (Y[i, j] < 0) Y[i, j] = mid;
+            }
+        }
         // end
 
         return Y;
@@ -266,9 +453,26 @@ public void Draw(int[,] array)
     public int[,] Task_1_27(int[,] B)
     {
         // code here
+        Draw(B);
 
+        if (B.GetLength(0) != 5 || B.GetLength(1) != 7) return null;
+
+        int[] temp = new int[B.GetLength(0)];
+        for (int i = 0; i < B.GetLength(0); i++)
+        {
+            int jMax = 0;
+            for (int j = 1; j< B.GetLength(1); j++)
+            {
+                if (B[i, j] > B[i, jMax]) jMax = j;
+            }
+            temp[i] = B[i, jMax];
+        }
+        for(int i = 0; i < B.GetLength(0); i++)
+        {
+            B[i,3] = temp[4-i];
+        }
         // end
-
+        Draw(B);
         return B;
     }
     public int[,] Task_1_28(int[,] A)
@@ -290,9 +494,30 @@ public void Draw(int[,] array)
     public int[,] Task_1_30(int[,] B)
     {
         // code here
-
+        if (B.GetLength(0) != 5 || B.GetLength(1) != 5) return null;
         // end
 
+        int ijMax = 0, iN = -1;
+        for( int i = 1; i < B.GetLength(0); i++)
+        {
+            if (B[i, i] > B[ijMax,ijMax]) ijMax = i;
+        }
+        for (int i = 0; i < B.GetLength(0); i++)
+        {
+            if (B[i, 2] < 0)
+            {
+                iN = i;
+                break;
+            }
+        }
+        if (iN == -1) return B;
+        for (int i = 0; i < B.GetLength(0); i++)
+        {
+            int temp = B[ijMax, i];
+            B[ijMax, i] = B[iN, i];
+            B[iN,i]= temp;
+
+        }
         return B;
     }
     public int[,] Task_1_31(int[,] A, int[] B)
@@ -313,9 +538,29 @@ public void Draw(int[,] array)
     }
     public int[] Task_1_33(int[,] A)
     {
-        int[] answer = default(int[]);
+        if (A.GetLength(0) != 5 || A.GetLength(1) != 7) return null;
+        int count = 0;
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            for (int j = 0; j < A.GetLength(1); j++)
+            {
+                if (A[i, j] < 0) count++;
+            }
+        }
         // code here
-
+        int[] answer = new int[count];
+        count = 0;
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            for (int j = 0; j < A.GetLength(1); j++)
+            {
+                if (A[i, j] < 0)
+                {
+                    answer[count] = A[i, j];
+                    count++;
+                }
+            }
+        }
         // end
 
         return answer;
@@ -324,135 +569,135 @@ public void Draw(int[,] array)
 
     #region Level 2
     public double[,] Task_2_1(double[,] A)
-{
-    // code here
-    if (A.GetLength(0) != 5 || A.GetLength(1) != 7) return null;
-    // end
-    for(int i = 0; i< A.GetLength(0); i++)
     {
-        int jMax = 0;
-        for (int j = 1; j< A.GetLength(1); j++)
+        // code here
+        if (A.GetLength(0) != 5 || A.GetLength(1) != 7) return null;
+        // end
+        for (int i = 0; i < A.GetLength(0); i++)
         {
-            if (A[i, j] > A[i,jMax]) jMax = j;
-        }
-        if (jMax == 0)
-        {
-            if (A[i, jMax+1] > 0) A[i, jMax+1] *= 2;
-            if (A[i, jMax + 1] < 0) A[i, jMax + 1] /= 2;
-        }
-        else if (jMax == A.GetLength(1) - 1)
-        {
-            if (A[i, jMax - 1] > 0) A[i, jMax - 1] *= 2;
-            if (A[i, jMax - 1] < 0) A[i, jMax - 1] /= 2;
-        }
-        else
-        {
-            if (A[i,jMax-1] < A[i, jMax + 1])
+            int jMax = 0;
+            for (int j = 1; j < A.GetLength(1); j++)
+            {
+                if (A[i, j] > A[i, jMax]) jMax = j;
+            }
+            if (jMax == 0)
+            {
+                if (A[i, jMax + 1] > 0) A[i, jMax + 1] *= 2;
+                if (A[i, jMax + 1] < 0) A[i, jMax + 1] /= 2;
+            }
+            else if (jMax == A.GetLength(1) - 1)
             {
                 if (A[i, jMax - 1] > 0) A[i, jMax - 1] *= 2;
                 if (A[i, jMax - 1] < 0) A[i, jMax - 1] /= 2;
             }
             else
             {
-                if (A[i, jMax + 1] > 0) A[i, jMax + 1] *= 2;
-                if (A[i, jMax + 1] < 0) A[i, jMax + 1] /= 2;
+                if (A[i, jMax - 1] < A[i, jMax + 1])
+                {
+                    if (A[i, jMax - 1] > 0) A[i, jMax - 1] *= 2;
+                    if (A[i, jMax - 1] < 0) A[i, jMax - 1] /= 2;
+                }
+                else
+                {
+                    if (A[i, jMax + 1] > 0) A[i, jMax + 1] *= 2;
+                    if (A[i, jMax + 1] < 0) A[i, jMax + 1] /= 2;
+                }
             }
         }
+        return A;
     }
-    return A;
-}
-    #endregion
+    
     public int[,] Task_2_2(int[,] A)      ///////        ERROR
-{
-    // code here
-    if (A.GetLength(0) != 7 || A.GetLength(1) != 5) return null;
-    // end
-    Draw(A);
-    for (int j = 0; j<A.GetLength(1); j++)
     {
-        int iMax = 0, countP = 0, countN = 0;
-        for (int i = 0; i< A.GetLength(0); i++)
+        // code here
+        if (A.GetLength(0) != 7 || A.GetLength(1) != 5) return null;
+        // end
+        Draw(A);
+        for (int j = 0; j < A.GetLength(1); j++)
         {
-            if (A[i,j] > 0) countP++;
-            if (A[i, j] < 0) countN++;
-            if (A[i,j] > A[iMax,j]) iMax = i;
+            int iMax = 0, countP = 0, countN = 0;
+            for (int i = 0; i < A.GetLength(0); i++)
+            {
+                if (A[i, j] > 0) countP++;
+                if (A[i, j] < 0) countN++;
+                if (A[i, j] > A[iMax, j]) iMax = i;
+            }
+            if (countP > countN)
+            {
+                A[iMax, j] = 0;
+            }
+            else A[iMax, j] = iMax;// + 1;                     /////////     index вместо номера
         }
-        if (countP > countN)
-        {
-            A[iMax, j] = 0;
-        }
-        else A[iMax, j] = iMax;// + 1;                     /////////     index вместо номера
+        Draw(A);
+        return A;
     }
-    Draw(A);
-    return A;
-}
     public int[,] Task_2_3(int[,] A)
-{
-    if (A.GetLength(0) != 10 || A.GetLength(1) != 5) return null;
-    // code here
-    for (int j = 0; j < A.GetLength(1); j++)
     {
-        int iMax = 0, sumAfterMax = 0;
-        for (int i = 0; i < A.GetLength(0); i++)
+        if (A.GetLength(0) != 10 || A.GetLength(1) != 5) return null;
+        // code here
+        for (int j = 0; j < A.GetLength(1); j++)
         {
-            if (A[i, j] > A[iMax, j])
+            int iMax = 0, sumAfterMax = 0;
+            for (int i = 0; i < A.GetLength(0); i++)
             {
-                iMax = i;
-                sumAfterMax = 0;
+                if (A[i, j] > A[iMax, j])
+                {
+                    iMax = i;
+                    sumAfterMax = 0;
+                }
+                else
+                {
+                    sumAfterMax += A[i, j];
+                }
             }
-            else
-            {
-                sumAfterMax += A[i, j];
-            }
+            if (iMax < 5) A[0, j] = sumAfterMax;
+
         }
-        if (iMax < 5) A[0, j] = sumAfterMax;
+        // end
 
+        return A;
     }
-            // end
-
-            return A;
-}
     public int[,] Task_2_4(int[,] A, int[] B)
-{
-    // code here
-    if (A.GetLength(0) != 7 || A.GetLength(1) != 5 || B.Length!=5) return null;
-
-    for (int j = 0; j < A.GetLength(1); j++)
     {
-        int iMax = 0;
-        for (int i = 0; i < A.GetLength(0); i++)
+        // code here
+        if (A.GetLength(0) != 7 || A.GetLength(1) != 5 || B.Length != 5) return null;
+
+        for (int j = 0; j < A.GetLength(1); j++)
         {
-            if (A[i, j] > A[iMax, j])
-                iMax = i;
+            int iMax = 0;
+            for (int i = 0; i < A.GetLength(0); i++)
+            {
+                if (A[i, j] > A[iMax, j])
+                    iMax = i;
+            }
+            if (B[j] > A[iMax, j]) A[iMax, j] = B[j];
+
         }
-        if (B[j] > A[iMax, j]) A[iMax, j] = B[j];
+        // end
 
+        return A;
     }
-    // end
-
-    return A;
-}
     public double[,] Task_2_5(double[,] A) ///////        ERROR
-{
-    // code here
-    if (A.GetLength(0) != 7 || A.GetLength(1) != 5) return null;
-
-    for (int j = 0; j < A.GetLength(1); j++)
     {
-        int iMax = 0;
-        for (int i = 0; i < A.GetLength(0); i++)
+        // code here
+        if (A.GetLength(0) != 7 || A.GetLength(1) != 5) return null;
+
+        for (int j = 0; j < A.GetLength(1); j++)
         {
-            if (A[i, j] > A[iMax, j])
-                iMax = i;
+            int iMax = 0;
+            for (int i = 0; i < A.GetLength(0); i++)
+            {
+                if (A[i, j] > A[iMax, j])
+                    iMax = i;
+            }
+            if ((A[0, j] + A[A.GetLength(0) - 1, j]) / 2.0 > A[iMax, j]) A[iMax, j] = (A[0, j] + A[A.GetLength(0) - 1, j]) / 2.0;
+            else A[iMax, j] = iMax; //+1      /////////     index вместо номера     
+
         }
-        if ((A[0, j] + A[A.GetLength(0) - 1, j]) / 2.0 > A[iMax, j]) A[iMax, j] = (A[0, j] + A[A.GetLength(0) - 1, j]) / 2.0;
-        else A[iMax, j] = iMax; //+1      /////////     index вместо номера     
+        // end
 
+        return A;
     }
-    // end
-
-    return A;
-}
     public int[,] Task_2_6(int n)
     {
         int[,] answer = default(int[,]);
@@ -486,7 +731,7 @@ public void Draw(int[,] array)
 
         return A;
     }
-
+    #endregion
     #region Level 3
     public int[,] Task_3_1(int[,] matrix)
     {
