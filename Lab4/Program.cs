@@ -46,19 +46,38 @@ public class Program
         //        { -13, 14, 15, 16, 17, -19,0 },
         //        { 0, -1, -2, -3, -4, -6, 0 }
         //    };
-        int[,] A27 = {
-                { 1, 2, -3, 7, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, 14, 25, 25, 16, 17, -19 },
-                { 0, 0, -1, -2, -3, -4, -6 }
+        //int[,] A27 = {
+        //        { 1, 2, -3, 7, -5, 7, 7 },
+        //        { 5, 6, -7, 8, 9, 9, -11 },
+        //        { 9, 10, 11, 12, 13, 15, 15 },
+        //        { -13, 14, 25, 25, 16, 17, -19 },
+        //        { 0, 0, -1, -2, -3, -4, -6 }
+        //    };
+        //int[,] B7 = {
+        //        { 1, 2, -3, 7, 7, 0 },
+        //        { 5, 6, -7, 9, -11, 1 },
+        //        { 9, 10, 11, 15, 15, 2 },
+        //        { -13, 14, 25, 25, -19, 3 },
+        //        { 5, 6, -7, 8, 9, 4},
+        //        { 0, 0, -1, -2, -3, 5 }
+        //    };
+        int[,] B9 = {
+                { 1, 2, -3, 7, 7, 0, -2 },
+                { 5, 6, -7, 9, -11, 1, 3 },
+                { 9, 10, 11, 15, 15, 2, 5 },
+                { -13, 14, 25, 25, -19, 3, -7 },
+                { 5, 6, -7, 8, 9, 4, 4},
+                { 0, 0, -1, -2, -3, -5, 0 }
             };
         //program.Task_1_3(A3);
         //program.Task_1_6(A6);
         //program.Task_1_12(A12);
         //program.Task_1_18(A18, A18.GetLength(0), A18.GetLength(1));
         //program.Task_1_21(A21);
-        program.Task_1_27(A27);
+        //program.Task_1_27(A27);
+        //program.Task_2_6(3);
+        //program.Task_2_7(B7);
+        program.Task_2_9(B9);
     }
 
     public void Draw(double[,] array)
@@ -700,25 +719,61 @@ public class Program
     }
     public int[,] Task_2_6(int n)
     {
-        int[,] answer = default(int[,]);
+        if (n < 0) return null;
+        int[,] answer = new int[n,n*3];
         // code here
-
+        Draw(answer);
+        for (int i = 0; i < n; i++)
+        {
+            answer[i, i] = 1;
+            answer[i,i+n] = 1;
+            answer[i, i + 2*n] = 1;
+        }
         // end
-
+        Draw(answer);
         return answer;
     }
     public int[,] Task_2_7(int[,] A)
     {
         // code here
-
+        if (A.GetLength(0) != 6 || A.GetLength(1) != 6) return null;
         // end
-
+        Draw(A);
+        int iMax = 0;
+        for (int i = 1; i < A.GetLength(0); i++)
+        {
+            if (A[i, i] > A[iMax, iMax]) iMax = i;
+        }
+        for (int i = 0; i < iMax; i++)
+        {
+            for (int j = i+1; j < A.GetLength(1); j++)
+            {
+                A[i, j] = 0;
+            }
+        }
+        Draw(A);
         return A;
     }
     public int[,] Task_2_8(int[,] B)
     {
         // code here
+        if (B.GetLength(0) != 6 || B.GetLength(1) != 6) return null;
+        for (int i = 0; i < B.GetLength(0); i += 2)
+        {
+            int jMax1 = 0, jMax2 = 0;
+            for(int j = 1; j < B.GetLength(1); j++)
+            {
+                if (B[i,j] > B[i, jMax1]) jMax1 = j;
+            }
 
+            for (int j = 1; j < B.GetLength(1); j++)
+            {
+                if (B[i+1, j] > B[i+1, jMax2]) jMax2 = j;
+            }
+            int temp = B[i, jMax1];
+            B[i,jMax1] = B[i+1,jMax2];
+            B[i+1,jMax2] = temp;
+        }
         // end
 
         return B;
@@ -726,7 +781,18 @@ public class Program
     public int[,] Task_2_9(int[,] A)
     {
         // code here
-
+        if (A.GetLength(0) != 6 || A.GetLength(1) != 7) return null;
+        Draw(A);
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            for (int j = 0; j < A.GetLength(1)/2; j++)
+            {
+                int temp = A[i, j];
+                A[i, j] = A[i, A.GetLength(1) - 1 - j];
+                A[i, A.GetLength(1) - 1 - j] = temp;
+            }
+        }
+        Draw(A);
         // end
 
         return A;
