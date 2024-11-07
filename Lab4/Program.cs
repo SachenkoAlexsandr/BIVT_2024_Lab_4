@@ -292,13 +292,43 @@ public class Program
 
     #region Level 2
     public double[,] Task_2_1(double[,] A)
+{
+    // code here
+    if (A.GetLength(0) != 5 || A.GetLength(1) != 7) return null;
+    // end
+    for(int i = 0; i< A.GetLength(0); i++)
     {
-        // code here
-
-        // end
-
-        return A;
+        int jMax = 0;
+        for (int j = 1; j< A.GetLength(1); j++)
+        {
+            if (A[i, j] > A[i,jMax]) jMax = j;
+        }
+        if (jMax == 0)
+        {
+            if (A[i, jMax+1] > 0) A[i, jMax+1] *= 2;
+            if (A[i, jMax + 1] < 0) A[i, jMax + 1] /= 2;
+        }
+        else if (jMax == A.GetLength(1) - 1)
+        {
+            if (A[i, jMax - 1] > 0) A[i, jMax - 1] *= 2;
+            if (A[i, jMax - 1] < 0) A[i, jMax - 1] /= 2;
+        }
+        else
+        {
+            if (A[i,jMax-1] < A[i, jMax + 1])
+            {
+                if (A[i, jMax - 1] > 0) A[i, jMax - 1] *= 2;
+                if (A[i, jMax - 1] < 0) A[i, jMax - 1] /= 2;
+            }
+            else
+            {
+                if (A[i, jMax + 1] > 0) A[i, jMax + 1] *= 2;
+                if (A[i, jMax + 1] < 0) A[i, jMax + 1] /= 2;
+            }
+        }
     }
+    return A;
+}
     #endregion
     public int[,] Task_2_2(int[,] A)
     {
