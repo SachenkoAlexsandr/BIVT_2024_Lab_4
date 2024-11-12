@@ -69,6 +69,23 @@ public class Program
         //         { 5, 6, -7, 8, 9, 4, 4},
         //         { 0, 0, -1, -2, -3, -5, 0 }
         //     };
+
+        //int[,] C3 = {
+        //        { 1, 2, -3, 7, 7, 0 },
+        //        { 5, 6, -7, 9, -11, 1 },
+        //        { 9, 10, 11, 15, 15, 2 },
+        //        { -13, 14, 25, 25, -19, 3 },
+        //        { 5, 6, -7, 8, 9, 4},
+        //        { 0, 0, -1, -2, -3, 5 }
+        //    };
+        int[,] C5 = {
+                { 1, 2, -3, 7, 7, 0 },
+                { 5, 6, -7, 9, -11, 1 },
+                { 9, 10, 11, 15, 15, 2 },
+                { -13, 14, 5, 25, -19, 3 },
+                { 5, 6, -7, 8, -99, 4},
+                { 0, 0, -1, -2, -3, 5 }
+            };
         //program.Task_1_3(A3);
         //program.Task_1_6(A6);
         //program.Task_1_12(A12);
@@ -78,6 +95,9 @@ public class Program
         //program.Task_2_6(3);
         //program.Task_2_7(B7);
         //program.Task_2_9(B9);
+        //program.Task_3_3(C3);
+        program.Task_3_5(C5, 2);
+
     }
 
     public void Draw(double[,] array)
@@ -254,10 +274,8 @@ public class Program
                     iMax = i;
                 }
             }
-            //Console.WriteLine(JMin);
 
         }
-        //Console.WriteLine($"{iMax}   {jMax}");
         // code here
         int[,] a = new int[5, 6];
         int newI = 0, newJ = 0;
@@ -827,9 +845,35 @@ public class Program
     }
     public int[] Task_3_3(int[,] matrix)
     {
-        int[] answer = default(int[]);
+        int n = matrix.GetLength(0), m = matrix.GetLength(1);
+        if (n != m) return default(int[]);
+        
         // code here
+        Draw(matrix);
+        int count = 0;
+        int[] answer = new int[2 * n - 1];
+        for (int k = n-1; k > -n; k--)  // диагонали по часовой
+        {
+            int s = 0;
 
+            if (k < 0)
+            {
+                for (int i = 0; i < m + k; i++)
+                    s += matrix[i, i - k];
+            }
+            if (k == 0)
+            {
+                for (int i = 0; i < m; i++)
+                    s += matrix[i, i];
+            }
+            if (k > 0)
+            {
+                for (int i = 0; i < m - k; i++)
+                    s += matrix[i + k, i];
+            }
+            answer[count] = s;
+            count++;
+        }
         // end
 
         return answer;
@@ -844,8 +888,38 @@ public class Program
     }
     public int[,] Task_3_5(int[,] matrix, int k)
     {
+        int n = matrix.GetLength(0), m = matrix.GetLength(1);
+        if (n != m || k<=0 || k>=n) return default(int[,]);
+        k--;
         // code here
-
+        Draw(matrix);
+        int iMax = 0, jMax = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j<m; j++)
+            {
+                if(Math.Abs(matrix[i, j]) > Math.Abs(matrix[iMax, jMax]))
+                {
+                    iMax = i;
+                    jMax = j;
+                }
+            }
+        }
+        if (iMax == k && jMax == k) return matrix;
+        
+        for (int i = 0; i< n; i++)
+        {
+            int temp = matrix[i, k];
+            matrix[i, k] = matrix[i, jMax];
+            matrix[i, jMax] = temp;
+        }
+        for (int j = 0; j < n; j++)
+        {
+            int temp = matrix[k, j];
+            matrix[k, j] = matrix[iMax, j];
+            matrix[iMax, j] = temp;
+        }
+        Draw(matrix);
         // end
 
         return matrix;
