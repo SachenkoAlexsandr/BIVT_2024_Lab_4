@@ -837,13 +837,51 @@ public class Program
     #endregion
     #region Level 3
     public int[,] Task_3_1(int[,] matrix)
+{
+    // code here
+    int n = matrix.GetLength(0), m = matrix.GetLength(1);
+    if (n != 7 || m != 5) return null;
+    int[] a = new int[n];
+    Draw(matrix);
+    for (int i = 0; i < n; i++)
     {
-        // code here
-
-        // end
-
-        return matrix;
+        int jMin = 0;
+        for (int j = 1; j < m; j++)
+        {
+            if (matrix[i, j] < matrix[i, jMin]) jMin = j;
+        }
+        a[i] = matrix[i, jMin];
     }
+
+    for (int i = 1, k = 2; i < n;)
+    {
+        if (i == 0 || a[i] <= a[i - 1])
+        {
+            i = k;
+            k++;
+        }
+        else
+        {
+            int temp = a[i];
+            a[i] = a[i - 1];
+            a[i - 1] = temp;
+
+            for (int j = 0; j < m; j++)
+            {
+                temp = matrix[i, j];
+                matrix[i, j] = matrix[i - 1, j];
+                matrix[i - 1, j] = temp;
+
+            }
+
+            i--;
+
+        }
+    }
+    // end
+    Draw(matrix);
+    return matrix;
+}
     public int[,] Task_3_2(int[,] matrix)
     {
         // code here
