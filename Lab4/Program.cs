@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+тоusing System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
@@ -955,7 +955,25 @@ public class Program
     public int[,] Task_3_9(int[,] matrix)
     {
         // code here
+int n = mat.GetLength(0), c;
+        int m = mat.GetLength(1);
+        int[] a = new int[m];
+        for (int j = 0; j < m; j++)
+        {
+            c = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (mat[i, j] < 0) c++;
+            }
+            a[j] = c;
+        }
 
+        for (int i = 0; i < m; i++) Console.Write($"{a[i]} ");
+
+        for (int j = 0; j < m; j++)
+        {
+
+        }
         // end
 
         return matrix;
