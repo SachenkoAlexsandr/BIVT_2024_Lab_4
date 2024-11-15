@@ -80,14 +80,21 @@ public class Program
         //        { 5, 6, -7, 8, 9, 4},
         //        { 0, 0, -1, -2, -3, 5 }
         //    };
-        int[,] C5 = {
-                { 1, 2, -3, 7, 7, 0 },
-                { 5, 6, -7, 9, -11, 1 },
-                { 9, 10, 11, 15, 15, 2 },
-                { -13, 14, 5, 25, -19, 3 },
-                { 5, 6, -7, 8, -99, 4},
-                { 0, 0, -1, -2, -3, 5 }
-            };
+        //int[,] C5 = {
+        //        { 1, 2, -3, 7, 7, 0 },
+        //        { 5, 6, -7, 9, -11, 1 },
+        //        { 9, 10, 11, 15, 15, 2 },
+        //        { -13, 14, 5, 25, -19, 3 },
+        //        { 5, 6, -7, 8, -99, 4},
+        //        { 0, 0, -1, -2, -3, 5 }
+        //    };
+        //int[,] C11 = {
+        //        { 1,    2,      -3,     7,      -5,     7,      7 },
+        //        { 5,    6,      -7,     8,      9,      9,      -11 },
+        //        { 9,    10,     11,     12,     13,     15,     15 },
+        //        { -13,  0,      25,     25,     16,     0,      -19 },
+        //        { -6,   -5,     -1,     -2,     -3,     -4,     0 }
+        //    };
         //program.Task_1_3(A3);
         //program.Task_1_6(A6);
         //program.Task_1_12(A12);
@@ -98,8 +105,8 @@ public class Program
         //program.Task_2_7(B7);
         //program.Task_2_9(B9);
         //program.Task_3_3(C3);
-        program.Task_3_5(C5, 2);
-
+        //program.Task_3_5(C5, 2);
+        //program.Task_3_11(C11);
     }
 
     public void Draw(double[,] array)
@@ -1054,8 +1061,46 @@ public class Program
     public int[,] Task_3_11(int[,] matrix)
     {
         // code here
-
+        Draw(matrix);
+        int n = matrix.GetLength(0), m = matrix.GetLength(1), cI = 0, cJ = 0;
+        int[] countI = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                if(matrix[i, j] == 0)
+                {
+                    if (countI[i] == 0) cI++;
+                    countI[i]++;
+                    
+                }
+            }
+        }
+        if (cI == n ) return null;
+        int[,] newMatrix = new int[n - cI, m];
+        //n = n - cI; m = m - cJ;
+        cI = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (countI[i] == 0)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    newMatrix[cI, j] = matrix[i, j];
+                    
+                }
+                cI++;
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"{countI[i]}  ");
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+        Draw(newMatrix);
         // end
+        matrix = newMatrix;
 
         return matrix;
     }
