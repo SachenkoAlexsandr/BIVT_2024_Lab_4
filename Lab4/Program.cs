@@ -95,6 +95,10 @@ public class Program
         //        { -13,  0,      25,     25,     16,     0,      -19 },
         //        { -6,   -5,     -1,     -2,     -3,     -4,     0 }
         //    };
+
+
+        int[] A = { 1, 2, 3, 4, 5, 6 };
+        int[] B = { 10, 11, 12, 13, 14, 15 };
         //program.Task_1_3(A3);
         //program.Task_1_6(A6);
         //program.Task_1_12(A12);
@@ -106,6 +110,7 @@ public class Program
         //program.Task_2_9(B9);
         //program.Task_3_3(C3);
         //program.Task_3_5(C5, 2);
+        program.Task_3_7(A, B, 3);
         //program.Task_3_11(C11);
     }
 
@@ -1027,8 +1032,47 @@ public class Program
     {
         int[] answer = default(int[]);
 
-        // code here
+        int a = A.Length, b = B.Length;
+        if (a != b || b==0 || a==0) return answer;
 
+        int[,] GA = new int[n,n], GB = new int[n, n];
+        answer = new int[n * n];
+        int[] answer2 = new int[n * n];
+        // code here
+        int c = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = i; j < n; j++, c++)
+            {
+                GA[i,j] = A[c];
+                GB[i, j] = B[c];
+            }
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                for (int k = 0; k < n; k++)
+                {
+                    answer[i * n + j] += GA[i, k] * GB[k, j];
+                }
+                
+            }
+        }
+        Draw(GA);
+        Console.WriteLine("    X  ");
+        Console.WriteLine();
+
+        Draw(GB);
+        Console.WriteLine("    =  ");
+        for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine();
+            for (int j = 0; j < n; j++)
+                            Console.Write($"{answer[i*n+j]}  ");
+        }
+            
         // end
 
         return answer;
