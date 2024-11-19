@@ -1044,8 +1044,10 @@ public class Program
         {
             for (int j = i; j < n; j++, c++)
             {
-                GA[i,j] = A[c];
+                GA[i, j] = A[c];
+                GA[j, i] = A[c];
                 GB[i, j] = B[c];
+                GB[j, i] = B[c];
             }
         }
 
