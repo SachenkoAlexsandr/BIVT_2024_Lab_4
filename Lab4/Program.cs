@@ -365,43 +365,38 @@ public class Program
 
         return B;
     }
-    public int[,] Task_1_18(int[,] D, int n, int m)           ///////////////////////
-    {
-        // code here
-        Draw(D);
+    public int[,] Task_1_18(int[,] D, int n, int m)           
+{
+    // code here
+    Draw(D);
 
-        for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
+    {
+        if (D[i, 0] < 0) continue;
+        int jMax = 0;
+        for (int j = 1; j < m; j++)
         {
-            if (D[i, 0] < 0) continue;
-            int jMax = 0;
-            for (int j = 1; j < m; j++)
-            {
-                if (D[i, j] < 0) break;
-                if (D[i, j] > D[i, jMax]) jMax = j;
-            }
-            if (jMax < m - 1)
+            if (D[i, j] < 0) break;
+            if (D[i, j] > D[i, jMax]) jMax = j;
+        }
+
+        for (int j = m - 1; j > jMax; j--)
+        {
+            if (D[i, j] < 0)
             {
                 int temp = D[i, jMax];
-                D[i, jMax] = D[i, jMax + 1];
-                D[i, jMax + 1] = temp;
+                D[i, jMax] = D[i, j];
+                D[i, j] = temp;
+                break;
             }
-            //for (int j = m-1; j > jMax; j--)
-            //{
-            //    if (D[i, j] < 0)
-            //    {
-            //        int temp = D[i, jMax];
-            //        D[i,jMax] = D[i,j];
-            //        D[i,j] = temp;
-            //        break;
-            //    }
-            //}
         }
-        Console.WriteLine();
-        // end
-        Draw(D);
-
-        return D;
     }
+    Console.WriteLine();
+    // end
+    Draw(D);
+
+    return D;
+}
     public double[,] Task_1_19(double[,] C, int n, int m)
     {
         // code here
