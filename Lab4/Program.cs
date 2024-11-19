@@ -80,14 +80,14 @@ public class Program
         //        { 5, 6, -7, 8, 9, 4},
         //        { 0, 0, -1, -2, -3, 5 }
         //    };
-        //int[,] C5 = {
-        //        { 1, 2, -3, 7, 7, 0 },
-        //        { 5, 6, -7, 9, -11, 1 },
-        //        { 9, 10, 11, 15, 15, 2 },
-        //        { -13, 14, 5, 25, -19, 3 },
-        //        { 5, 6, -7, 8, -99, 4},
-        //        { 0, 0, -1, -2, -3, 5 }
-        //    };
+        int[,] C5 = {
+                { 1, 2, -3, 7, 7, 0 },
+                { 5, 6, -7, 9, -11, 1 },
+                { 9, 10, 11, 15, 15, 2 },
+                { -13, 14, 5, 25, -19, 3 },
+                { 5, 6, -7, 8, -99, 4},
+                { 0, 0, -1, -2, -3, 5 }
+            };
         //int[,] C11 = {
         //        { 1,    2,      -3,     7,      -5,     7,      7 },
         //        { 5,    6,      -7,     8,      9,      9,      -11 },
@@ -97,8 +97,8 @@ public class Program
         //    };
 
 
-        int[] A = { 1, 2, 3, 4, 5, 6 };
-        int[] B = { 10, 11, 12, 13, 14, 15 };
+        //int[] A = { 1, 2, 3, 4, 5, 6 };
+        //int[] B = { 10, 11, 12, 13, 14, 15 };
         //program.Task_1_3(A3);
         //program.Task_1_6(A6);
         //program.Task_1_12(A12);
@@ -109,8 +109,8 @@ public class Program
         //program.Task_2_7(B7);
         //program.Task_2_9(B9);
         //program.Task_3_3(C3);
-        //program.Task_3_5(C5, 2);
-        program.Task_3_7(A, B, 3);
+        program.Task_3_5(C5, 2);
+        //program.Task_3_7(A, B, 3);
         //program.Task_3_11(C11);
     }
 
@@ -842,51 +842,51 @@ public class Program
     #endregion
     #region Level 3
     public int[,] Task_3_1(int[,] matrix)
-{
-    // code here
-    int n = matrix.GetLength(0), m = matrix.GetLength(1);
-    if (n != 7 || m != 5) return null;
-    int[] a = new int[n];
-    Draw(matrix);
-    for (int i = 0; i < n; i++)
     {
-        int jMin = 0;
-        for (int j = 1; j < m; j++)
+        // code here
+        int n = matrix.GetLength(0), m = matrix.GetLength(1);
+        if (n != 7 || m != 5) return null;
+        int[] a = new int[n];
+        Draw(matrix);
+        for (int i = 0; i < n; i++)
         {
-            if (matrix[i, j] < matrix[i, jMin]) jMin = j;
-        }
-        a[i] = matrix[i, jMin];
-    }
-
-    for (int i = 1, k = 2; i < n;)
-    {
-        if (i == 0 || a[i] <= a[i - 1])
-        {
-            i = k;
-            k++;
-        }
-        else
-        {
-            int temp = a[i];
-            a[i] = a[i - 1];
-            a[i - 1] = temp;
-
-            for (int j = 0; j < m; j++)
+            int jMin = 0;
+            for (int j = 1; j < m; j++)
             {
-                temp = matrix[i, j];
-                matrix[i, j] = matrix[i - 1, j];
-                matrix[i - 1, j] = temp;
+                if (matrix[i, j] < matrix[i, jMin]) jMin = j;
+            }
+            a[i] = matrix[i, jMin];
+        }
+
+        for (int i = 1, k = 2; i < n;)
+        {
+            if (i == 0 || a[i] <= a[i - 1])
+            {
+                i = k;
+                k++;
+            }
+            else
+            {
+                int temp = a[i];
+                a[i] = a[i - 1];
+                a[i - 1] = temp;
+
+                for (int j = 0; j < m; j++)
+                {
+                    temp = matrix[i, j];
+                    matrix[i, j] = matrix[i - 1, j];
+                    matrix[i - 1, j] = temp;
+
+                }
+
+                i--;
 
             }
-
-            i--;
-
         }
+        // end
+        Draw(matrix);
+        return matrix;
     }
-    // end
-    Draw(matrix);
-    return matrix;
-}
     public int[,] Task_3_2(int[,] matrix)
     {
         // code here
@@ -960,59 +960,83 @@ public class Program
         if (iMax == k && jMax == k) return matrix;
 
         Console.WriteLine($"{iMax}  {jMax}   {k}");
-        if (k > iMax)
+
+        for(int j = 0;j < m; j++)
         {
-            while (iMax < k)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    int temp = matrix[iMax, j];
-                    matrix[iMax, j] = matrix[iMax + 1, j];
-                    matrix[iMax+1, j] = temp;
-                }
-                iMax++;
-            }
+            int temp = matrix[iMax, j];
+            matrix[iMax, j] = matrix[k,j];
+            matrix[k,j] = temp;
         }
-        else
+        for (int i = 0; i < n; i++)
         {
-            while (iMax > k)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    int temp = matrix[iMax, j];
-                    matrix[iMax, j] = matrix[iMax - 1, j];
-                    matrix[iMax - 1, j] = temp;
-                }
-                iMax--;
-            }
+            int temp = matrix[i, jMax];
+            matrix[i, jMax] = matrix[i, k];
+            matrix[i, k] = temp;
         }
 
-        if (k > jMax)
-        {
-            while (jMax < k)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    int temp = matrix[i, jMax];
-                    matrix[i, jMax] = matrix[i, jMax + 1];
-                    matrix[i, jMax + 1] = temp;
-                }
-                jMax++;
-            }
-        }
-        else
-        {
-            while (jMax > k)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    int temp = matrix[i, jMax];
-                    matrix[i, jMax] = matrix[i, jMax - 1];
-                    matrix[i, jMax - 1] = temp;
-                }
-                jMax--;
-            }
-        }
+
+        //Циклический сдвиг iMax->k
+
+
+
+        //if (k > iMax)
+        //{
+        //    while (iMax < k)
+        //    {
+        //        for (int j = 0; j < m; j++)
+        //        {
+        //            int temp = matrix[iMax, j];
+        //            matrix[iMax, j] = matrix[iMax + 1, j];
+        //            matrix[iMax + 1, j] = temp;
+        //        }
+        //        iMax++;
+        //    }
+        //}
+        //else
+        //{
+        //    while (iMax > k)
+        //    {
+        //        for (int j = 0; j < m; j++)
+        //        {
+        //            int temp = matrix[iMax, j];
+        //            matrix[iMax, j] = matrix[iMax - 1, j];
+        //            matrix[iMax - 1, j] = temp;
+        //        }
+        //        iMax--;
+        //    }
+        //}
+
+
+        //Циклический сдвиг jMax->k
+
+
+
+        //if (k > jMax)
+        //{
+        //    while (jMax < k)
+        //    {
+        //        for (int i = 0; i < n; i++)
+        //        {
+        //            int temp = matrix[i, jMax];
+        //            matrix[i, jMax] = matrix[i, jMax + 1];
+        //            matrix[i, jMax + 1] = temp;
+        //        }
+        //        jMax++;
+        //    }
+        //}
+        //else
+        //{
+        //    while (jMax > k)
+        //    {
+        //        for (int i = 0; i < n; i++)
+        //        {
+        //            int temp = matrix[i, jMax];
+        //            matrix[i, jMax] = matrix[i, jMax - 1];
+        //            matrix[i, jMax - 1] = temp;
+        //        }
+        //        jMax--;
+        //    }
+        //}
         Draw(matrix);
         // end
 
@@ -1033,9 +1057,9 @@ public class Program
         int[] answer = default(int[]);
 
         int a = A.Length, b = B.Length;
-        if (a != b || b==0 || a==0) return answer;
+        if (a != b || b == 0 || a == 0) return answer;
 
-        int[,] GA = new int[n,n], GB = new int[n, n];
+        int[,] GA = new int[n, n], GB = new int[n, n];
         answer = new int[n * n];
         int[] answer2 = new int[n * n];
         // code here
@@ -1059,7 +1083,7 @@ public class Program
                 {
                     answer[i * n + j] += GA[i, k] * GB[k, j];
                 }
-                
+
             }
         }
         Draw(GA);
@@ -1072,9 +1096,9 @@ public class Program
         {
             Console.WriteLine();
             for (int j = 0; j < n; j++)
-                            Console.Write($"{answer[i*n+j]}  ");
+                Console.Write($"{answer[i * n + j]}  ");
         }
-            
+
         // end
 
         return answer;
@@ -1116,14 +1140,14 @@ public class Program
             {
                 int temp = a[j];
                 a[j] = a[j - 1];
-                a[j-1] = temp;
+                a[j - 1] = temp;
 
                 for (int i = 0; i < n; i++)
                 {
                     temp = matrix[i, j];
                     matrix[i, j] = matrix[i, j - 1];
                     matrix[i, j - 1] = temp;
-                    
+
                 }
 
                 j--;
@@ -1152,15 +1176,15 @@ public class Program
         {
             for (int j = 0; j < m; j++)
             {
-                if(matrix[i, j] == 0)
+                if (matrix[i, j] == 0)
                 {
                     if (countI[i] == 0) cI++;
                     countI[i]++;
-                    
+
                 }
             }
         }
-        if (cI == n ) return null;
+        if (cI == n) return null;
         int[,] newMatrix = new int[n - cI, m];
         //n = n - cI; m = m - cJ;
         cI = 0;
@@ -1171,7 +1195,7 @@ public class Program
                 for (int j = 0; j < m; j++)
                 {
                     newMatrix[cI, j] = matrix[i, j];
-                    
+
                 }
                 cI++;
             }
