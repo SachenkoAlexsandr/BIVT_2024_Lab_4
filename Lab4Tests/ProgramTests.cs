@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Tests
 {
@@ -13,1696 +12,1321 @@ namespace Tests
     public class ProgramTests
     {
         Program main = new Program();
-        Random rand = new Random();
-        const int ERROR = 0;
-        const double EPS = 0.0001;
-        const int[] DEFAULT_ARRAY = default(int[]);
-        const int[,] DEFAULT_MATRIX = default(int[,]);
-
         [TestMethod()]
         public void Task_1_1Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, 5, 6, 7 },
-                { 5, 6, 7, 8, 9, 10, 11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { 13, 14, 15, 16, 17, 18, 19 },
-                { 0, 1, 2, 3, 4, 5, 6 }
-            };
-            int[,] error = new int[rand.Next(0, 5), rand.Next(8, 10)];
-            int outputC, outputE, answer = 301;
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6 };
+            double[] answer1 = new double[] { 0, 0.54, 0.36, 1.07, -0.79, -0.18 };
+            double[] answer2 = new double[] { 0.1, 0.05, 0.15, 0.15, 0.25, 0.3 };
             // Act
-            outputC = main.Task_1_1(matrix);
-            outputE = main.Task_1_1(error);
+            input1 = main.Task_1_1(input1);
+            input2 = main.Task_1_1(input2);
             // Assert
-            Assert.AreEqual(answer, outputC);
-            Assert.AreEqual(ERROR, outputE);
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_1_2Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, 5, 6, 7 },
-                { 5, 6, 7, 8, 9, 10, 11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { 13, 14, 15, 16, 17, 18, 19 },
-                { 0, 1, 2, 3, 4, 5, 6 }
-            };
-            int[,] error = new int[rand.Next(0, 5), rand.Next(8, 10)];
-            double outputC, outputE, answer = 8.852941176470589;
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4 };
+            double[] answer1 = new double[] { 0, 1.88, 1.88, 1.88, -2.2, -0.5, 1.88, -1 };
+            double[] answer2 = new double[] { 3.38, 3.38, 3.38, 3.38, 3.38, 3.38, 3.38, 3.38 };
             // Act
-            outputC = main.Task_1_2(matrix);
-            outputE = main.Task_1_2(error);
+            input1 = main.Task_1_2(input1);
+            input2 = main.Task_1_2(input2);
             // Assert
-            Assert.IsTrue(Math.Abs(answer - outputC) < EPS);
-            Assert.AreEqual(ERROR, outputE);
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_1_3Test()
         {
             // Arrange
-            int[,] matrix = {
-            { 1, 2, 3, 4 },
-            { 5, 6, 7, 8 },
-            { 9, 10, 11, 12 },
-            { 13, 14, 15, 16 }
-        };
-            int[,] error = new int[rand.Next(0, 4), rand.Next(5, 9)];
-            int outputC, outputE, answer = 34;
+            double[] input1 = new double[] { -2.2, -0.5, 2, -1 };
+            double[] input2 = new double[] { 0, 1.5, 4, 3 };
+            double[] input3 = new double[] { 2, 1, 3, 3 };
+            double[] answer1 = new double[] { -2.2, 1, 6, 2 };
+            double[] answer2 = new double[] { -0.2, 0.5, 5, 2 };
+            double[] answer3 = new double[] { 2, 2.5, 7, 6 };
+            double[] answer4 = new double[] { -2.2, -2, -2, -4 };
+            double[] answer5 = new double[] { -4.2, -1.5, -1, -4 };
+            double[] answer6 = new double[] { -2, 0.5, 1, 0 };
+            double[] sum1, sum2, sum3, dif1, dif2, dif3;
             // Act
-            outputC = main.Task_1_3(matrix);
-            outputE = main.Task_1_3(error);
+            (sum1, dif1) = main.Task_1_3(input1, input2);
+            (sum2, dif2) = main.Task_1_3(input1, input3);
+            (sum3, dif3) = main.Task_1_3(input2, input3);
             // Assert
-            Assert.AreEqual(answer, outputC);
-            Assert.AreEqual(ERROR, outputE);
+            Assert.AreEqual(answer1.Length, sum1.Length);
+            Assert.AreEqual(answer2.Length, sum2.Length);
+            Assert.AreEqual(answer3.Length, sum3.Length);
+            Assert.AreEqual(answer4.Length, dif1.Length);
+            Assert.AreEqual(answer5.Length, dif2.Length);
+            Assert.AreEqual(answer6.Length, dif3.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(sum1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(sum2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(sum3[i], 2));
+            }
+            for (int i = 0; i < answer4.Length; i++)
+            {
+                Assert.AreEqual(answer4[i], Math.Round(dif1[i], 2));
+            }
+            for (int i = 0; i < answer5.Length; i++)
+            {
+                Assert.AreEqual(answer5[i], Math.Round(dif2[i], 2));
+            }
+            for (int i = 0; i < answer6.Length; i++)
+            {
+                Assert.AreEqual(answer6[i], Math.Round(dif3[i], 2));
+            }
         }
+
         [TestMethod()]
         public void Task_1_4Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, 5, 6 },
-                { 5, 6, 7, 8, 9, 11 },
-                { 0, 2, 3, 4, 5, 6 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(7, 10)];
-            double rowC, colC, rowE, colE, row = 2, col = 0;
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2 };
+            double[] input2 = new double[] { 1.5, 2.8, 3.1, 4.7, 5.2 };
+            double[] answer1 = new double[] { -0.66, 0.84, 0.34, 2.34, -2.86 };
+            double[] answer2 = new double[] { -1.96, -0.66, -0.36, 1.24, 1.74 };
             // Act
-            (rowC, colC) = main.Task_1_4(matrix);
-            (rowE, colE) = main.Task_1_4(error);
+            input1 = main.Task_1_4(input1);
+            input2 = main.Task_1_4(input2);
             // Assert
-            Assert.AreEqual(row, rowC);
-            Assert.AreEqual(col, colC);
-            Assert.AreEqual(ERROR, rowE);
-            Assert.AreEqual(ERROR, colE);
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_1_5Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 4, 6 },
-                { 5, -6, 7, 11 },
-                { 0, 2, 3, -6 },
-                { -1, 4, -5, 6 },
-                { 1, 4, 5, 6 }
-            };
-            int target = 2;
-            int[,] error = new int[rand.Next(0, 5), rand.Next(5, 10)];
-            double valueC, valueE, value = -5;
-            int rowC, rowE, row = 3;
+            double[] input1 = new double[] { -2.2, -0.5, 2, -1 };
+            double[] input2 = new double[] { 0, 1.5, 4, 3 };
+            double[] input3 = new double[] { 2, 1, 3, 3 };
+            double answer1 = 4.25;
+            double answer2 = -1.9;
+            double answer3 = 22.5;
+            double outpit1, outpit2, outpit3;
             // Act
-            (valueC, rowC) = main.Task_1_5(matrix, target);
-            (valueE, rowE) = main.Task_1_5(error, target);
+            outpit1 = main.Task_1_5(input1, input2);
+            outpit2 = main.Task_1_5(input1, input3);
+            outpit3 = main.Task_1_5(input2, input3);
             // Assert
-            Assert.AreEqual(value, valueC);
-            Assert.AreEqual(row, rowC);
-            Assert.AreEqual(ERROR, valueE);
-            Assert.AreEqual(ERROR, rowE);
+            Assert.AreEqual(answer1, Math.Round(outpit1, 2));
+            Assert.AreEqual(answer2, Math.Round(outpit2, 2));
+            Assert.AreEqual(answer3, Math.Round(outpit3, 2));
         }
         [TestMethod()]
         public void Task_1_6Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, 5, 6, 7 },
-                { 5, 6, 7, 8, -9, 10, 11 },
-                { 9, 10, -11, -12, -13, -14, -15 },
-                { -13, -14, 15, 16, 17, 18, -19 }
-            };
-            int[,] error = new int[rand.Next(0, 4), rand.Next(8, 10)];
-            int[] outputC, outputE, answer = new int[] { 0, 4, 6, 6 };
+            double[] input1 = new double[] { 1.5, 1, 3, -2.2, -0.5 };
+            double[] input2 = new double[] { 2, 1, 3, 5, 6 };
+            double answer1 = 4.16;
+            double answer2 = 8.66;
+            double output1, output2;
             // Act
-            outputC = main.Task_1_6(matrix);
-            outputE = main.Task_1_6(error);
+            output1 = main.Task_1_6(input1);
+            output2 = main.Task_1_6(input2);
             // Assert
-            Assert.AreEqual(answer.Length, outputC.Length);
-            for (int i = 0; i < answer.Length; i++)
-            {
-                Assert.AreEqual(answer[i], outputC[i]);
-            }
-            Assert.IsNull(outputE);
+            Assert.AreEqual(answer1, Math.Round(output1, 2));
+            Assert.AreEqual(answer2, Math.Round(output2, 2));
         }
         [TestMethod()]
         public void Task_1_7Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, -5 },
-                { 5, 11, -17, 11, -10 },
-                { -9, -10, -11, -14, -15 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[] outputC, outputE, answer = new int[] { 5, 11, 3, 11, -5 };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 0 };
+            double[] answer1 = new double[] { 0, 0, 0, 0, -2.2, -0.5, 0 };
+            double[] answer2 = new double[] { 2, 1, 0, 0, 0, 0, 0 };
             // Act
-            outputC = main.Task_1_7(matrix);
-            outputE = main.Task_1_7(error);
+            input1 = main.Task_1_7(input1);
+            input2 = main.Task_1_7(input2);
             // Assert
-            Assert.AreEqual(answer.Length, outputC.Length);
-            for (int i = 0; i < answer.Length; i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                Assert.AreEqual(answer[i], outputC[i]);
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
         }
+
         [TestMethod()]
         public void Task_1_8Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, -5, -6 },
-                { 5, 11, -17, 11, -10, 6 },
-                { -9, -10, -11, -14, -15, -6 },
-                { -9, -10, -11, -14, -15, 6 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            double[] outputC, outputE, answer = new double[] { 2.5, 8.25, 0, 6 };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6 };
+            int output1, output2, answer1 = 2, answer2 = 0;
             // Act
-            outputC = main.Task_1_8(matrix);
-            outputE = main.Task_1_8(error);
+            output1 = main.Task_1_8(input1);
+            output2 = main.Task_1_8(input2);
             // Assert
-            Assert.AreEqual(answer.Length, outputC.Length);
-            for (int i = 0; i < answer.Length; i++)
-            {
-                Assert.AreEqual(answer[i], outputC[i]);
-            }
-            Assert.IsNull(outputE);
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
         }
         [TestMethod()]
         public void Task_1_9Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, -5, -6, -7 },
-                { 5, 11, -17, 11, -10, 6, 5 },
-                { -9, -10, -11, -14, -15, -16, 1 },
-                { -9, -10, -11, -14, -15, -6, -2 },
-                { -9, -10, -11, -14, -15, 6, 4 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 4, 2, 3, 1, -5, -6, -7 },
-                { 11, 5, -17, 11, -10, 6, 5 },
-                { 1, -10, -11, -14, -15, -16, -9 },
-                { -2, -10, -11, -14, -15, -6, -9 },
-                { 6, -10, -11, -14, -15, -9, 4 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4 };
+            int output1, output2, answer1 = 4, answer2 = 3;
             // Act
-            outputC = main.Task_1_9(matrix);
-            outputE = main.Task_1_9(error);
+            output1 = main.Task_1_9(input1);
+            output2 = main.Task_1_9(input2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
         }
         [TestMethod()]
         public void Task_1_10Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, -5, -6, -7 },
-                { 5, 11, -17, 11, -10, 6, 5 },
-                { -9, -10, -11, -14, -15, -16, 1 },
-                { -9, -10, -11, -14, -15, -6, -2 },
-                { -9, -10, -11, -14, -15, 6, 4 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, 3, 4, -5, -6, -7  },
-                { -9, -10, -11, -14, -15, -6, -2 },
-                { -9, -10, -11, -14, -15, -16, 1  },
-                { 5, 11, -17, 11, -10, 6, 5 },
-                { -9, -10, -11, -14, -15, 6, 4 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1, 1.8, 2.4 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4, 5, 0 };
+            int P1 = 2, Q1 = 8, P2 = 3, Q2 = 4, output1, output2, answer1 = 2, answer2 = 0;
             // Act
-            outputC = main.Task_1_10(matrix);
-            outputE = main.Task_1_10(error);
+            output1 = main.Task_1_10(input1, P1, Q1);
+            output2 = main.Task_1_10(input2, P2, Q2);
             // Assert
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
         }
         [TestMethod()]
         public void Task_1_11Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, -5, -6, -7 },
-                { 5, 11, -17, 11, -10, 6, 5 },
-                { -9, -10, -11, -14, -15, -16, 1 },
-                { -9, -10, -11, -14, -15, -6, -2 },
-                { -9, -10, -11, -14, -15, 6, 4 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, 3, 4, -5, -6, -7 },
-                { 5, 11, -17, 11, -10, 6, 5 },
-                { -9, -10, -11, -14, -15, -6, -2 },
-                { -9, -10, -11, -14, -15, 6, 4 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, 2, 3.1, -0.7 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 0, 1, 2, 3 };
+            double[] answer1 = new double[] { 1.5, 1, 3, 2, 2, 3.1 };
+            double[] answer2 = new double[] { 2, 1, 3, 3, 5, 6, 1, 2, 3 };
             // Act
-            outputC = main.Task_1_11(matrix);
-            outputE = main.Task_1_11(error);
+            input1 = main.Task_1_11(input1);
+            input2 = main.Task_1_11(input2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_1_12Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, -5, -6, -7 },
-                { 5, 11, -17, 11, -10, 6, 5 },
-                { -9, -10, -11, -14, -15, -16, 1 },
-                { -9, -10, -11, -14, 15, -6, -2 },
-                { -9, -10, -11, -14, -15, 6, 4 },
-                { 0, -2, -3, -4, -5, 0, 5 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, 3, 4, -6, -7 },
-                { 5, 11, -17, 11, 6, 5 },
-                { -9, -10, -11, -14, -16, 1 },
-                { -9, -10, -11, -14, 6, 4 },
-                { 0, -2, -3, -4, 0, 5 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4 };
+            double val1, val2, answer1 = -1, answer2 = 0;
+            int idx1, idx2, answerIdx1 = 7, answerIdx2 = -1;
             // Act
-            outputC = main.Task_1_12(matrix);
-            outputE = main.Task_1_12(error);
+            (val1, idx1) = main.Task_1_12(input1);
+            (val2, idx2) = main.Task_1_12(input2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
+            Assert.AreEqual(answer1, val1);
+            Assert.AreEqual(answer2, val2);
+            Assert.AreEqual(answerIdx1, idx1);
+            Assert.AreEqual(answerIdx2, idx2);
         }
         [TestMethod()]
         public void Task_1_13Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3, 4, -5 },
-                { 5, 11, -17, 11, 7 },
-                { -9, -10, -11, -14, -15 },
-                { -9, -10, -11, -14, -6 },
-                { 0, -2, -3, -4, -5 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 4, 3, 2, -5 },
-                { 5, 11, -17, 11, 7 },
-                { -9, -14, -11, -10, -15 },
-                { -9, -14, -11, -10, -6 },
-                { 0, -4, -3, -2, -5 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1.9, 3.9, -0.1 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 0, 2, 7, 1 };
+            double[] answerE1 = new double[] { 0, 1, -2.2, 2, 3.9 };
+            double[] answerO1 = new double[] { 1.5, 3, -0.5, -1.9, -0.1 };
+            double[] answerE2 = new double[] { 2, 3, 5, 0, 7 };
+            double[] answerO2 = new double[] { 1, 3, 6, 2, 1 };
+            double[] outputE1, outputO1, outputE2, outputO2;
             // Act
-            outputC = main.Task_1_13(matrix);
-            outputE = main.Task_1_13(error);
+            (outputE1, outputO1) = main.Task_1_13(input1);
+            (outputE2, outputO2) = main.Task_1_13(input2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answerE1.Length, outputE1.Length);
+            Assert.AreEqual(answerO1.Length, outputO1.Length);
+            Assert.AreEqual(answerE2.Length, outputE2.Length);
+            Assert.AreEqual(answerO2.Length, outputO2.Length);
+            for (int i = 0; i < answerE1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answerE1[i], outputE1[i]);
+                Assert.AreEqual(answerO1[i], outputO1[i]);
+                Assert.AreEqual(answerE2[i], outputE2[i]);
+                Assert.AreEqual(answerO2[i], outputO2[i]);
             }
-            Assert.IsNull(outputE);
         }
         [TestMethod()]
         public void Task_1_14Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, 3 },
-                { 5, 11, -17},
-                { 9, -10, -11},
-                { 0, -2, -3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[] outputC, outputE, answer = new int[] { 0, 2, 3 };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1, 2, 2.5, -1.4 };
+            double[] input2 = new double[] { 2, 5, 3, 0, 7, 9, 1, 4, 6, 10, 8 };
+            double[] input3 = new double[] { -2, 5, 3, 0, 7, 9, 1, 4, 6, 10, 8 };
+            double output1, output2, output3, answer1 = 12.25, answer2 = 385, answer3 = 0;
             // Act
-            outputC = main.Task_1_14(matrix);
-            outputE = main.Task_1_14(error);
+            output1 = main.Task_1_14(input1);
+            output2 = main.Task_1_14(input2);
+            output3 = main.Task_1_14(input3);
             // Assert
-            Assert.AreEqual(answer.Length, outputC.Length);
-            for (int i = 0; i < answer.Length; i++)
-            {
-                Assert.AreEqual(answer[i], outputC[i]);
-            }
-            Assert.IsNull(outputE);
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
+            Assert.AreEqual(answer3, output3);
         }
         [TestMethod()]
         public void Task_1_15Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 4, -5, 6, 7 },
-                { 5, 6, -7, 8, 9, -10, -11 },
-                { 9, 10, 11, -12, 13, 14, 15 },
-                { -13, 14, 15, 16, 17, -18, -19 },
-                { 0, -1, -2, -3, -4, -5, -6 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 4, -5, 6, 7 },
-                { 5, 6, -7, 8, 18, -10, -11 },
-                { 9, 10, 11, -12, 13, 14, 45 },
-                { -13, 14, 15, 16, 68, -18, -19 },
-                { 0, -1, -2, -3, -4, -5, -6 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, 2, 3.1, -0.7 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 0, 1, 2, 3 };
+            double[] answer1 = new double[] { double.NaN, 0.20, 0, 0.55, double.NaN, double.NaN, 0.35, 0.35, 0.57, double.NaN };
+            double[] answer2 = new double[] { 0.35, 0, 0.55, 0.55, 0.8, 0.9, double.NaN, 0, 0.35, 0.55 };
             // Act
-            outputC = main.Task_1_15(matrix);
-            outputE = main.Task_1_15(error);
+            input1 = main.Task_1_15(input1);
+            input2 = main.Task_1_15(input2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_16Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 4, -5, 6, 7 },
-                { 5, 6, -7, 8, 9, -10, -11 },
-                { 9, 10, 11, -12, 13, 14, 15 },
-                { -13, 14, 15, 16, 17, -18, -19 },
-                { 0, -1, -2, -3, -4, -5, -6 }
-            };
-            int[,] outputC, answer = new int[,] {
-                { 1, 2, -3, 4, -5, 6, 7 },
-                { 5, 6, -7, 8, -10, -11, 9 },
-                { 9, 10, 11, -12, 13, 14, 15 },
-                { -13, 14, 15, 16, -18, -19, 17 },
-                { -1, -2, -3, -4, -5, -6, 0 }
-            };
-            // Act
-            outputC = main.Task_1_16(matrix, matrix.GetLength(0), matrix.GetLength(1));
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            for (int i = 0; i < answer2.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
             }
         }
-        [TestMethod()]
-        public void Task_1_17Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 4, -5, 6, 7 },
-                { 5, 6, -7, 8, 9, -10, -11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { -13, 14, 15, 16, 17, -18, -19 },
-                { 0, -1, -2, -3, -4, -5, -6 }
-            };
-            int[,] outputC, answer = new int[,] {
-                { -5,1, 2, -3, 4,  6, 7 },
-                {  -11, 5, 6, -7, 8, 9, -10},
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { -19, -13, 14, 15, 16, 17, -18 },
-                { -6, 0, -1, -2, -3, -4, -5 }
-            };
-            // Act
-            outputC = main.Task_1_17(matrix, matrix.GetLength(0), matrix.GetLength(1));
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-        }
-        [TestMethod()]
-        public void Task_1_18Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 4, -5, 6, 7 },
-                { 5, 6, -7, 8, 9, -10, -11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { -13, 14, 15, 16, 17, -18, -19 },
-                { 0, -1, -2, -3, -4, -5, -6 }
-            };
-            int[,] outputC, answer = new int[,] {
-                { 1, -3,2, 4, -5, 6, 7 },
-                { 5,  -7, 6,8, 9, -10, -11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { -13, 14, 15, 16, 17, -18, -19 },
-                {  -1,0, -2, -3, -4, -5, -6 }
-            };
-            // Act
-            outputC = main.Task_1_18(matrix, matrix.GetLength(0), matrix.GetLength(1));
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-        }
-        [TestMethod()]
-        public void Task_1_19Test()
-        {
-            // Arrange
-            double[,] matrix = {
-                { 1, 2, -3, 4, -5, 6, 7 },
-                { 5, 6, -7, 8, 9, -10, -11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { -13, 14, 15, 16, 17, -18, -19 },
-                { 0, -1, -2, -3, -4, -5, -6 }
-            };
-            double[,] outputC, answer = new double[,] {
-                { 1, 2, -0.42857142857142855, 4, -0.7142857142857143, 6, 7 },
-                { 5, 6, -0.7777777777777778, 8, 9, -10, -11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { -0.7647058823529411, 14, 15, 16, 17, -18, -19 },
-                { 0, -1, -2, -3, -4, -5, -6 }
-            };
-            // Act
-            outputC = main.Task_1_19(matrix, matrix.GetLength(0), matrix.GetLength(1));
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(Math.Round(answer[i, j], 2), Math.Round(outputC[i, j], 2));
-                }
-            }
-        }
-        [TestMethod()]
-        public void Task_1_20Test()
-        {
-            // Arrange
-            double[,] matrix = {
-                { 1, 2, -3, 4, -5, 6, 7 },
-                { 5, 6, -7, 8, 9, -10, -11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { -13, 14, 15, 16, 17, -18, -19 },
-                { 0, -1, -2, -3, -4, -5, -6 }
-            };
-            double[,] outputC, answer = new double[,] {
-                { 1, 2, -3, 4, -5, 6, -4 },
-                { 5, 6, -7, 8, -9, -10, -11 },
-                { 9, 10, 11, 12, 13, 14, 15 },
-                { -13, 14, 15, 16, -16, -18, -19 },
-                { -3.5, -1, -2, -3, -4, -5, -6 }
-            };
-            // Act
-            outputC = main.Task_1_20(matrix, matrix.GetLength(0), matrix.GetLength(1));
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(Math.Round(answer[i, j], 2), Math.Round(outputC[i, j], 2));
-                }
-            }
-        }
-        [TestMethod()]
-        public void Task_1_21Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 4, -5, 7, 0 },
-                { 5, 6, -7, 8, 9, -11, 0 },
-                { 9, 10, 11, 12, 13, 15, 0 },
-                { -13, 14, 15, 16, 17, -19,0 },
-                { 0, -1, -2, -3, -4, -6, 0 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 4, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, 14, 15, 16, 17, 17, -19 },
-                { 0, -1, -2, -3, -4, 0, -6 }
-            };
-            // Act
-            outputC = main.Task_1_21(matrix);
-            outputE = main.Task_1_21(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_22Test()
-        {
-            // Arrange
-            double[,] matrix = {
-                { 1, 2, -3, 4, -5, 6, 7, 8 },
-                { 5, 6, -7, 8, 9, -10, -11, 12 },
-                { 9, 10, 11, 12, 13, 14, 15, 16 },
-                { -13, 14, 15, 16, 17, -18, -19, 0 },
-                { 0, -1, -2, -3, -4, -5, -6, 0 },
-                { 0, 1, -2, 3, -4, 5, -6, 5 }
-            };
-            double[,] error = new double[rand.Next(0, 3), rand.Next(10, 20)];
-            double[,] outputC, outputE, answer = new double[,] {
-                { 1, 2, -3, 4, -5, 6, 7, 8 },
-                { 5, 6, -7, 8, 9, -10, -11, 12 },
-                { 9, 10, 11, 12, 13, 14, 15, 16 },
-                { -13, 14, 15, 16, 9.04, -18, -19, 0 },
-                { 0, -1, -2, -3, -4, -5, -6, 0 },
-                { 0, 1, -2, 3, -4, 5, -6, 5 }
-        };
-            // Act
-            outputC = main.Task_1_22(matrix);
-            outputE = main.Task_1_22(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(Math.Round(answer[i, j], 2), Math.Round(outputC[i, j], 2));
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_23Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 4, -5, 7, 0 },
-                { 5, 6, -7, 8, 9, -11, 0 },
-                { 9, 10, 11, 12, 13, 15, 0 },
-                { -13, 14, 25, 16, 17, -19,0 },
-                { 0, -1, -2, -3, -4, -6, 0 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 4, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, 14, 25, 25, 16, 17, -19 },
-                { 0, 0, -1, -2, -3, -4, -6 }
-            };
-            // Act
-            outputC = main.Task_1_23(matrix);
-            outputE = main.Task_1_23(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_24Test()
-        {
-            // Arrange
-            double[,] matrix = {
-                { 1, 2, -3, 4, -5 },
-                { 5, 6, -7, 8, 9, },
-                { 9, 10, 11, 12, 13},
-                { -13, 14, 25, 16, 11 },
-                { 0, -1, -2, -3, -4 },
-                { 1, -1, 2, -2, 3 }
-            };
-            double[,] error = new double[rand.Next(0, 3), rand.Next(8, 10)];
-            double[,] outputC, outputE, answer = new double[,] {
-                { 1, 2, 0, 4, -5 },
-                { 5, 6, 0, 8, 9, },
-                { 9, 10, 11, 12, 13},
-                { 13.5, 14, 25, 16, 11 },
-                { 0, -1, -2, -3, -4 },
-                { 1, 0, 2, 0, 3 }
-            };
-            // Act
-            outputC = main.Task_1_24(matrix);
-            outputE = main.Task_1_24(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_25Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 4, -5 },
-                { 5, 6, -7, 8, 9 },
-                { 9, 10, 11, 12, 13},
-                { -13, 14, 25, 16, 11 },
-                { 0, -1, -2, -3, -4 },
-                { 1, -1, 2, -2, 3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 4, -5 },
-                { 5, 6, -7, 8, 9 },
-                { 0, -1, -2, -3, -4 },
-                { -13, 14, 25, 16, 11 },
-                { 9, 10, 11, 12, 13 },
-                { 1, -1, 2, -2, 3 }
-            };
-            // Act
-            outputC = main.Task_1_25(matrix);
-            outputE = main.Task_1_25(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_26Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 4, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, 14, 25, 25, 16, 17, -19 },
-                { 0, 0, -1, -2, -3, -4, -6 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[] vector = new int[] { 1, 2, 3, 4, 5, 6, 7 };
-            int[] vectorError = new int[rand.Next(0, 5)];
-            int[,] outputC, outputE, outputER, answer = new int[,] {
-                { 1, 2, -3, 4, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { 1, 2, 3, 4, 5, 6, 7 },
-                { 0, 0, -1, -2, -3, -4, -6 }
-            };
-            // Act
-            outputC = main.Task_1_26(matrix, vector);
-            outputE = main.Task_1_26(error, vector);
-            outputER = main.Task_1_26(matrix, vectorError);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-            Assert.IsNull(outputER);
-        }
-        [TestMethod()]
-        public void Task_1_27Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, 14, 25, 25, 16, 17, -19 },
-                { 0, 0, -1, -2, -3, -4, -6 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 0, -5, 7, 7 },
-                { 5, 6, -7, 25, 9, 9, -11 },
-                { 9, 10, 11, 15, 13, 15, 15 },
-                { -13, 14, 25, 9, 16, 17, -19 },
-                { 0, 0, -1, 7, -3, -4, -6 }
-            };
-            // Act
-            outputC = main.Task_1_27(matrix);
-            outputE = main.Task_1_27(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_28Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
-            // Act
-            outputC = main.Task_1_28(matrix);
-            outputE = main.Task_1_28(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_29Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, 14, 25, 25, 16, 17, -19 },
-                { 0, 0, -1, -2, -3, -4, -6 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, -3, 7, -5, 7, 7 },
-                { 5, -7, 8, 9, 9, -11 },
-                { 9, 11, 12, 13, 15, 15 },
-                { -13, 25, 25, 16, 17, -19 },
-                { 0, -1, -2, -3, -4, -6 }
-            };
-            // Act
-            outputC = main.Task_1_29(matrix);
-            outputE = main.Task_1_29(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_30Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, -5},
-                { 5, 6, -7, 8, 9 },
-                { 9, 10, 11, 12, 13 },
-                { -13, 14, 25, 25, 16 },
-                { 0, 0, -1, -2, -3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { -13, 14, 25, 25, 16 },
-                { 5, 6, -7, 8, 9 },
-                { 9, 10, 11, 12, 13 },
-                { 1, 2, -3, 7, -5},
-                { 0, 0, -1, -2, -3 }
-            };
-            // Act
-            outputC = main.Task_1_30(matrix);
-            outputE = main.Task_1_30(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_31Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, -5, 7, 7, 0 },
-                { 5, 6, -7, 8, 9, 9, -11, 0},
-                { 9, 10, 11, 12, 13, 15, 15, 0 },
-                { -13, 14, 25, 25, 16, 17, -19, 0 },
-                { 0, 0, -1, -2, -3, -4, -6, 0 }
-            };
-            int[] vector = new int[] { 1, 2, 3, 4, 5 };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[] errorVector = new int[rand.Next(8, 10)];
-            int[,] outputC, outputE, outputV, answer = new int[,] {
-                { 1, 2, -3, 7, -5, 7, 7, 1 },
-                { 5, 6, -7, 8, 9, 9, -11, 2},
-                { 9, 10, 11, 12, 13, 15, 15, 3 },
-                { -13, 14, 25, 25, 16, 17, -19, 4 },
-                { 0, 0, -1, -2, -3, -4, -6, 5 }
-            };
-            // Act
-            outputC = main.Task_1_31(matrix, vector);
-            outputV = main.Task_1_31(matrix, errorVector);
-            outputE = main.Task_1_31(error, vector);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-            Assert.IsNull(outputV);
-        }
-        [TestMethod()]
-        public void Task_1_32Test()
-        {
-            // Arrange
-            double[,] matrix = {
-                { 1, 2, -3, 7, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, 14, 25, 25, 16, 17, -19 },
-                { -6, -5, -1, -2, -3, -4, -6 }
-            };
-            double[,] error = new double[rand.Next(0, 3), rand.Next(8, 10)];
-            double[,] outputC, outputE, answer = new double[,] {
-                { 1, 2, -3, 4.8, -5, 7, 7 },
-                { 5, 6, -7, 8, 7.4, 9, -11 },
-                { 9, 10, 11, 12, 13, 12.142857142857142, 15 },
-                { -13, 14, 19.4, 25, 16, 17, -19 },
-                { -6, -5, 0, -2, -3, -4, -6 }
-            };
-            // Act
-            outputC = main.Task_1_32(matrix);
-            outputE = main.Task_1_32(error);
-            // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
-        }
-        [TestMethod()]
-        public void Task_1_33Test()
-        {
-            // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, 14, 25, 25, 16, 17, -19 },
-                { -6, -5, -1, -2, -3, -4, -6 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[] outputC, outputE, answer = new int[] { -3, -5, -7, -11, -13, -19, -6, -5, -1, -2, -3, -4, -6 };
-            // Act
-            outputC = main.Task_1_33(matrix);
-            outputE = main.Task_1_33(error);
-            // Assert
-            Assert.AreEqual(answer.Length, outputC.Length);
-            for (int i = 0; i < answer.Length; i++)
-            {
-                Assert.AreEqual(answer[i], outputC[i]);
-            }
-            Assert.IsNull(outputE);
-        }
+
         [TestMethod()]
         public void Task_2_1Test()
         {
             // Arrange
-            double[,] matrix = {
-                { 1, 2, -3, 7, -5, 7, 7 },
-                { 5, 6, -7, 8, 9, 9, -11 },
-                { 9, 10, 11, 12, 13, 15, 15 },
-                { -13, -30, 25, 25, 16, 17, -19 },
-                { -6, -5, -1, -2, -3, -4, -6 }
-            };
-            double[,] error = new double[rand.Next(0, 3), rand.Next(8, 10)];
-            double[,] outputC, outputE, answer = new double[,] {
-                { 1, 2, -3, 7, -2.5, 7, 7 },
-                { 5, 6, -7, 16, 9, 9, -11 },
-                { 9, 10, 11, 12, 26, 15, 15 },
-                { -13, -15, 25, 25, 16, 17, -19 },
-                { -6, -2.5, -1, -2, -3, -4, -6 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, -1.1, -0.5, 2 };
+            double[] answer2 = new double[] { 5, 2, 8, 2, 9, 3, 7, 4, 6, 10 };
             // Act
-            outputC = main.Task_2_1(matrix);
-            outputE = main.Task_2_1(error);
+            input1 = main.Task_2_1(input1);
+            input2 = main.Task_2_1(input2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_2_2Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 0, 10, 11, 15, 2 },
-                { -13, 0, 3, 0, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, -1 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4 };
+            double[] input3 = new double[] { 12, 1, 3, 3, 5, 6, 3, 4 };
+            double output1, output2, output3, answer1 = 2.5, answer2 = 14, answer3 = 0;
             // Act
-            outputC = main.Task_2_2(matrix);
-            outputE = main.Task_2_2(error);
+            output1 = main.Task_2_2(input1);
+            output2 = main.Task_2_2(input2);
+            output3 = main.Task_2_2(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
+            Assert.AreEqual(answer3, output3);
         }
         [TestMethod()]
         public void Task_2_3Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 2, 3, -19 },
-                { 1, 2, -3, 7, 0 },
-                { 5, 0, -1, 9, -1 },
-                { 9, 10, 11, 2, 15 },
-                { 0, 0, -1, -2, -3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { -6, 32, 1, 27, -18 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 2, 3, -19 },
-                { 1, 2, -3, 7, 0 },
-                { 5, 0, -1, 9, -1 },
-                { 9, 10, 11, 2, 15 },
-                { 0, 0, -1, -2, -3 }
-            };
+            double[] input1 = new double[] { 0, 1.5, -1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] answer1 = new double[] { 0, 3, -0.5, 6, -2.2, -0.5, 2 };
+            double[] answer2 = new double[] { 10, 4, 16, 1, 9, 3, 7, 4, 6, 10 };
             // Act
-            outputC = main.Task_2_3(matrix);
-            outputE = main.Task_2_3(error);
+            input1 = main.Task_2_3(input1);
+            input2 = main.Task_2_3(input2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_2_4Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
-            int[] vector = new int[] { 10, 20, 30, 0, -50 };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[] errorVector = new int[rand.Next(8, 10)];
-            int[,] outputC, outputE, outputV, answer = new int[,] {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 10, 10, 11, 15, 15 },
-                { -13, 20, 30, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
+            double[] input1 = new double[] { 0, 1.5, -1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 0 };
+            double[] input3 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] answer1 = new double[] { 0, 1.5, -1, 3, 0.4, 0.4, 0.4 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 4.5, 4.5, 4.5, 4.5, 4.5 };
             // Act
-            outputC = main.Task_2_4(matrix, vector);
-            outputV = main.Task_2_4(matrix, errorVector);
-            outputE = main.Task_2_4(error, vector);
+            input1 = main.Task_2_4(input1);
+            input2 = main.Task_2_4(input2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
-            Assert.IsNull(outputV);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_2_5Test()
         {
             // Arrange
-            double[,] matrix = {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
-            double[,] error = new double[rand.Next(0, 3), rand.Next(8, 10)];
-            double[,] outputC, outputE, answer = new double[,] {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 2, 10, 11, 15, 2 },
-                { -13, 3, 3, 3, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
+            double[] input1 = new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 };
+            double[] input2 = new double[] { 5, 2, -8, 1, 9, 3, 7, 4, 6 };
+            double[] input3 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] answer1 = new double[] { -2.2, -0.5 };
+            double[] answer2 = new double[0];
+            double[] answer3 = new double[0];
             // Act
-            outputC = main.Task_2_5(matrix);
-            outputE = main.Task_2_5(error);
+            input1 = main.Task_2_5(input1);
+            input2 = main.Task_2_5(input2);
+            input3 = main.Task_2_5(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
         }
+
         [TestMethod()]
         public void Task_2_6Test()
-        {
-            // Arrange
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 0, 0, 1, 0, 0, 1, 0, 0 },
-                { 0, 1, 0, 0, 1, 0, 0, 1, 0 },
-                { 0, 0, 1, 0, 0, 1, 0, 0, 1 }
-            };
+        {// Arrange
+            double[] input1 = new double[] { 0, 1.5, -1, -3, -2.2, -0.5, 6 };
+            double[] input2 = new double[] { 5, 2, -8, 1, 9, 3, 7, 4, 6 };
+            double[] output1, output2, output3, output4;
+            double P1 = 2.3, P2 = -0.1;
+            double[] answer1 = new double[] { 0, P1, 1.5, -1, -3, -2.2, -0.5, 6 };
+            double[] answer2 = new double[] { 0, P2, 1.5, -1, -3, -2.2, -0.5, 6 };
+            double[] answer3 = new double[] { 5, 2, -8, 1, 9, 3, P1, 7, 4, 6 };
+            double[] answer4 = new double[] { 5, 2, -8, 1, 9, 3, P2, 7, 4, 6 };
             // Act
-            outputC = main.Task_2_6(3);
-            outputE = main.Task_2_6(-1);
+            output1 = main.Task_2_6(input1, P1);
+            output2 = main.Task_2_6(input1, P2);
+            output3 = main.Task_2_6(input2, P1);
+            output4 = main.Task_2_6(input2, P2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            Assert.AreEqual(answer4.Length, output4.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], output1[i]);
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer4[i], output4[i]);
+            }
         }
+
         [TestMethod()]
         public void Task_2_7Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7, 0 },
-                { 5, 6, -7, 9, -11, 1 },
-                { 9, 10, 11, 15, 15, 2 },
-                { -13, 14, 25, 25, -19, 3 },
-                { 5, 6, -7, 8, 9, 4},
-                { 0, 0, -1, -2, -3, 5 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 0, 0, 0, 0, 0 },
-                { 5, 6, 0, 0, 0, 0 },
-                { 9, 10, 11, 0, 0, 0 },
-                { -13, 14, 25, 25, -19, 3 },
-                { 5, 6, -7, 8, 9, 4},
-                { 0, 0, -1, -2, -3, 5 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, -1.1, -0.5, 2 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] answer3 = new double[] { 5, 2, 8, 1, 9, 6, 7, 4, 6, 2 };
             // Act
-            outputC = main.Task_2_7(matrix);
-            outputE = main.Task_2_7(error);
+            input1 = main.Task_2_7(input1);
+            input2 = main.Task_2_7(input2);
+            input3 = main.Task_2_7(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_2_8Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7, 0 },
-                { 5, 6, -7, 9, -11, 1 },
-                { 9, 10, 11, 15, 15, 2 },
-                { -13, 14, 25, 25, -19, 3 },
-                { 5, 6, -7, 8, 9, 4},
-                { 0, 0, -1, -2, -3, -5 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 9, 7, 0 },
-                { 5, 6, -7, 7, -11, 1 },
-                { 9, 10, 11, 25, 15, 2 },
-                { -13, 14, 15, 25, -19, 3 },
-                { 5, 6, -7, 8, 0, 4},
-                { 9, 0, -1, -2, -3, -5 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, -2.2, 3, -0.5, 2 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] answer3 = new double[] { 5, 2, 8, 1, 2, 3, 7, 4, 6, 9 };
             // Act
-            outputC = main.Task_2_8(matrix);
-            outputE = main.Task_2_8(error);
+            input1 = main.Task_2_8(input1);
+            input2 = main.Task_2_8(input2);
+            input3 = main.Task_2_8(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
         }
         [TestMethod()]
         public void Task_2_9Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7, 0, -2 },
-                { 5, 6, -7, 9, -11, 1, 3 },
-                { 9, 10, 11, 15, 15, 2, 5 },
-                { -13, 14, 25, 25, -19, 3, -7 },
-                { 5, 6, -7, 8, 9, 4, 4},
-                { 0, 0, -1, -2, -3, -5, 0 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { -2, 0, 7, 7, -3, 2, 1},
-                { 3, 1, -11, 9, -7, 6, 5 },
-                { 5, 2, 15, 15, 11, 10, 9 },
-                { -7, 3, -19, 25, 25, 14, -13},
-                { 4, 4, 9, 8, -7, 6, 5},
-                { 0, -5, -3, -2, -1, 0, 0 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4 };
+            double[] input3 = new double[] { 12, 1, 3, 3, 5, 6, 3, 4 };
+            double output1, output2, output3, answer1 = 0.575, answer2 = 3.6666666666666, answer3 = 0;
             // Act
-            outputC = main.Task_2_9(matrix);
-            outputE = main.Task_2_9(error);
+            output1 = main.Task_2_9(input1);
+            output2 = main.Task_2_9(input2);
+            output3 = main.Task_2_9(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1, output1, 0.00005);
+            Assert.AreEqual(answer2, output2, 0.00005);
+            Assert.AreEqual(answer3, output3, 0.00005);
+        }
+        [TestMethod()]
+        public void Task_2_10Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 3, -2.2, -0.5, 2 };
+            double[] answer2 = new double[] { 5, 2, 8, 9, 3, 7, 4, 6, 10 };
+            double[] answer3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            // Act
+            input1 = main.Task_2_10(input1);
+            input2 = main.Task_2_10(input2);
+            input3 = main.Task_2_10(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
+        }
+        [TestMethod()]
+        public void Task_2_11Test()
+        {
+            // Arrange
+            double P = 7.77;
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2, P };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10, P };
+            double[] answer3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            // Act
+            input1 = main.Task_2_11(input1, P);
+            input2 = main.Task_2_11(input2, P);
+            input3 = main.Task_2_11(input3, P);
+            // Assert
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
+        }
+        [TestMethod()]
+        public void Task_2_12Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, -0.7, -0.5, 2 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] answer3 = new double[] { -31, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            // Act
+            input1 = main.Task_2_12(input1);
+            input2 = main.Task_2_12(input2);
+            input3 = main.Task_2_12(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
+        }
+        [TestMethod()]
+        public void Task_2_13Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 6 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 4, 3, 7, 4, 6, 10 };
+            double[] answer3 = new double[] { 0, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            // Act
+            input1 = main.Task_2_13(input1);
+            input2 = main.Task_2_13(input2);
+            input3 = main.Task_2_13(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
+        }
+        [TestMethod()]
+        public void Task_2_14Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, -2.2, 3, -0.5, 2 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] answer3 = new double[] { -1, -2, -8, -5, -9, -3, -7, -4, -6, -2 };
+            // Act
+            input1 = main.Task_2_14(input1);
+            input2 = main.Task_2_14(input2);
+            input3 = main.Task_2_14(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
+        }
+        [TestMethod()]
+        public void Task_2_15Test()
+        {
+            // Arrange
+            int k1 = 1, k2 = 7;
+            double[] A1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] B1 = new double[] { 5, 2, 8, 1, 9, 10 };
+            double[] A2 = new double[] { -5, -2, -8, -1, -6, -2 };
+            double[] B2 = new double[] { 5, 2, 8, 1, 9, 10 };
+            double[] answer1 = new double[] { 0, 1.5, 5, 2, 8, 1, 9, 10, 1, 3, -2.2, -0.5, 2 };
+            double[] answer2 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] answer3 = new double[] { -5, -2, 5, 2, 8, 1, 9, 10, -8, -1, -6, -2 };
+            double[] answer4 = new double[] { -5, -2, -8, -1, -6, -2 };
+            double[] output1, output2, output3, output4;
+            // Act
+            output1 = main.Task_2_15(A1, B1, k1);
+            output2 = main.Task_2_15(A1, B1, k2);
+            output3 = main.Task_2_15(A2, B2, k1);
+            output4 = main.Task_2_15(A2, B2, k2);
+            // Assert
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            Assert.AreEqual(answer4.Length, output4.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], output1[i]);
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
+            for (int i = 0; i < answer4.Length; i++)
+            {
+                Assert.AreEqual(answer4[i], output4[i]);
+            }
+        }
+        [TestMethod()]
+        public void Task_2_16Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            int[] answer1 = new int[] { 0, 4, 5 };
+            int[] answer2 = new int[] { 0, 1, 3, 5, 7 };
+            int[] answer3 = new int[] { 0, 2, 4, 6, 8 };
+            int[] output1, output2, output3;
+            // Act
+            output1 = main.Task_2_16(input1);
+            output2 = main.Task_2_16(input2);
+            output3 = main.Task_2_16(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], output1[i]);
+            }
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
+        }
+        [TestMethod()]
+        public void Task_2_17Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4 };
+            double[] input3 = new double[] { 12, 1, 3, 3, 5, 6, 3, 4 };
+            double output1, output2, output3, answer1 = 2.625, answer2 = 0, answer3 = 4.625;
+            // Act
+            output1 = main.Task_2_17(input1);
+            output2 = main.Task_2_17(input2);
+            output3 = main.Task_2_17(input3);
+            // Assert
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
+            Assert.AreEqual(answer3, output3);
+        }
+        [TestMethod()]
+        public void Task_2_18Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 15, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -3, -9, -3, -7, -4, -6, -4 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 0, 0, 0, 0 };
+            double[] answer2 = new double[] { 0, 0, 0, 0, 0, 3, 7, 4, 6, 10 };
+            double[] answer3 = new double[] { -5, -2, -8, -3, -9, 0, 0, 0, 0, 0 };
+            // Act
+            input1 = main.Task_2_18(input1);
+            input2 = main.Task_2_18(input2);
+            input3 = main.Task_2_18(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
+        }
+        [TestMethod()]
+        public void Task_2_19Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -7, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 6, -2.2, -0.5, 2 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 20 };
+            double[] answer3 = new double[] { -5, -2, -8, 0, -9, -3, -7, -4, -6, -2 };
+            // Act
+            input1 = main.Task_2_19(input1);
+            input2 = main.Task_2_19(input2);
+            input3 = main.Task_2_19(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, input1.Length);
+            Assert.AreEqual(answer2.Length, input2.Length);
+            Assert.AreEqual(answer3.Length, input3.Length);
+            for (int i = 0; i < answer1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(input1[i], 2));
+            }
+            for (int i = 0; i < answer2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(input2[i], 2));
+            }
+            for (int i = 0; i < answer3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(input3[i], 2));
+            }
+        }
+        [TestMethod()]
+        public void Task_2_20Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 4, 3, -2.2, -0.5, 2, -3.1 };
+            double[] input2 = new double[] { 2, 1, 3, 3, 5, 6, 3, 4 };
+            double[] input3 = new double[] { 12, 1, 3, 3, 5, 6, 3, -4 };
+            double output1, output2, output3, answer1 = 3.8, answer2 = 14, answer3 = 6;
+            // Act
+            output1 = main.Task_2_20(input1);
+            output2 = main.Task_2_20(input2);
+            output3 = main.Task_2_20(input3);
+            // Assert
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
+            Assert.AreEqual(answer3, output3);
         }
         [TestMethod()]
         public void Task_3_1Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 9, 10, 11, 15, 15 },
-                { 1, 2, -3, 7, 7 },
-                { 0, 0, -1, -2, -3 },
-                { 5, 6, -7, 8, 9},
-                { 5, 6, -7, 9, -11 },
-                { -13, 14, 25, 25, -19 },
-                { -13, 14, 25, 25, -19 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 10, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            int[] answer1 = new int[] { 3, 6 };
+            int[] answer2 = new int[] { 3, 8, 9 };
+            int[] answer3 = new int[] { 0, 3, 5, 6 };
+            int[] output1, output2, output3;
             // Act
-            outputC = main.Task_3_1(matrix);
-            outputE = main.Task_3_1(error);
+            output1 = main.Task_3_1(input1);
+            output2 = main.Task_3_1(input2);
+            output3 = main.Task_3_1(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], output1[i]);
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
         }
         [TestMethod()]
         public void Task_3_2Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7, 0 },
-                { 5, 6, -7, 9, -11, 1 },
-                { 9, 10, 11, 15, 15, 2 },
-                { -13, 14, 25, 25, -19, 3 },
-                { 5, 6, -7, 8, 9, 4},
-                { 0, 0, -1, -2, -3, 5 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 0, 0, 0, 0, 0, 0 },
-                { 0, 6, -7, 9, -11, 0 },
-                { 0, 10, 11, 15, 15, 0 },
-                { 0, 14, 25, 25, -19, 0 },
-                { 0, 6, -7, 8, 9, 0},
-                { 0, 0, 0, 0, 0, 0 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 10, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 4, -2.2, -0.5, 5 };
+            double[] answer2 = new double[] { 5, 2, 8, 11, 9, 3, 7, 4, 12, 13 };
+            double[] answer3 = new double[] { 0, -2, -8, 1, -9, 2, 3, -4, -6, -2 };
+            double[] output1, output2, output3;
             // Act
-            outputC = main.Task_3_2(matrix);
-            outputE = main.Task_3_2(error);
+            output1 = main.Task_3_2(input1);
+            output2 = main.Task_3_2(input2);
+            output3 = main.Task_3_2(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], output1[i]);
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
         }
         [TestMethod()]
         public void Task_3_3Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7, 0 },
-                { 5, 6, -7, 9, -11, 1 },
-                { 9, 10, 11, 15, 15, 2 },
-                { -13, 14, 25, 25, -19, 3 },
-                { 5, 6, -7, 8, 9, 4},
-                { 0, 0, -1, -2, -3, 5 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[] outputC, outputE, answer = new int[2 * 6 - 1] { 0, 5, -8, 14, 45, 57, -5, 24, -2, 8, 0 };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { 1.5, 0, 1, 3, -2.2, -0.5, 3 };
+            double[] answer2 = new double[] { 2, 5, 1, 8, 3, 9, 4, 7, 10, 10 };
+            double[] answer3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] output1, output2, output3;
             // Act
-            outputC = main.Task_3_3(matrix);
-            outputE = main.Task_3_3(error);
+            output1 = main.Task_3_3(input1);
+            output2 = main.Task_3_3(input2);
+            output3 = main.Task_3_3(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
             {
-                Assert.AreEqual(answer[i], outputC[i]);
+                Assert.AreEqual(answer1[i], output1[i]);
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
         }
         [TestMethod()]
         public void Task_3_4Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9 },
-                { 0, 0, -1, -2, -3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1, 2, -3, 7, 7 },
-                { 9, 10, 11, 15, 15 },
-                { 1, 1, 1, 25, -19 },
-                { 1, 1, 1, 1, 9 },
-                { 1, 1, 1, 1, 1 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 2.5, -2.2, -0.5, 2.8 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 39, 49 };
+            double[] answer3 = new double[] { 0, -2, -8, -11, -9, -21, -22, -4, -6, -2 };
+            double[] output1, output2, output3;
             // Act
-            outputC = main.Task_3_4(matrix);
-            outputE = main.Task_3_4(error);
+            output1 = main.Task_3_4(input1);
+            output2 = main.Task_3_4(input2);
+            output3 = main.Task_3_4(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], output1[i]);
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
         }
         [TestMethod()]
         public void Task_3_5Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7, 0 },
-                { 5, 6, -7, 9, -11, 1 },
-                { 9, 10, 11, 15, 15, 2 },
-                { -13, 14, 5, 25, -19, 3 },
-                { 5, 6, -7, 8, -99, 4},
-                { 0, 0, -1, -2, -3, 5 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[,] outputC, outputE, outputI, answer = new int[,] {
-                { 1, 7, 2, -3, 7, 0 },
-                { 5, -99, 6, -7, 8, 4},
-                { 5,-11, 6, -7, 9,  1 },
-                { 9, 15, 10, 11, 15, 2 },
-                { -13, -19, 14, 5, 25, 3 },
-                { 0, -3, 0, -1, -2, 5 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { -2.2, 1.5, 0, 3, 1, -0.5, 3 };
+            double[] answer2 = new double[] { 5, 2, 7, 1, 8, 3, 9, 4, 10, 10 };
+            double[] answer3 = new double[] { -9, -2, -8, -1, -6, -1, -1, -4, -1, -2 };
+            double[] output1, output2, output3;
             // Act
-            outputC = main.Task_3_5(matrix, 2);
-            outputE = main.Task_3_5(error, 2);
-            outputI = main.Task_3_5(matrix, 0);
+            output1 = main.Task_3_5(input1);
+            output2 = main.Task_3_5(input2);
+            output3 = main.Task_3_5(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], output1[i]);
             }
-            Assert.IsNull(outputE);
-            Assert.IsNull(outputI);
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
         }
         [TestMethod()]
         public void Task_3_6Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7, 0 },
-                { 5, 6, -7, 9, -11, 1 },
-                { 9, 10, 11, 15, 15, 2 },
-                { -13, 14, 5, 25, -19, 3 },
-                { 5, 6, -7, 8, -99, 4},
-                { 0, 0, -1, -2, -3, 5 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(11, 15)];
-            int[] outputC1, outputC2, outputE1, outputE2,
-                answer1 = new int[] { 1, 2, -3, 7, 7, 0, 6, -7, 9, -11, 1, 11, 15, 15, 2, 25, -19, 3, -99, 4, 5},
-                answer2 = new int[] { 5, 9, 10, -13, 14, 5, 5, 6, -7, 8, 0, 0, -1, -2, -3};
+            double[] input1 = new double[] { 0, 1.5, 1, -1.3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -2, -4, -6, -2 };
+            int answer1 = 4, answer2 = 2, answer3 = 3;
+            int output1, output2, output3;
             // Act
-            (outputC1, outputC2) = main.Task_3_6(matrix);
-            (outputE1, outputE2) = main.Task_3_6(error);
+            output1 = main.Task_3_6(input1);
+            output2 = main.Task_3_6(input2);
+            output3 = main.Task_3_6(input3);
             // Assert
-            Assert.AreEqual(answer1.GetLength(0), outputC1.GetLength(0));
-            Assert.AreEqual(answer2.GetLength(0), outputC2.GetLength(0));
-            for (int i = 0; i < answer1.GetLength(0); i++)
-            {
-                Assert.AreEqual(answer1[i], outputC1[i]);
-            }
-            for (int i = 0; i < answer2.GetLength(0); i++)
-            {
-                Assert.AreEqual(answer2[i], outputC2[i]);
-            }
-            Assert.IsNull(outputE1);
-            Assert.IsNull(outputE2);
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
+            Assert.AreEqual(answer3, output3);
         }
         [TestMethod()]
         public void Task_3_7Test()
         {
             // Arrange
-            int[] A = { 1, 2, 3, 4, 5, 6 };
-            int[] B = { 10, 11, 12, 13, 14, 15 };
-            int[] errorA = new int[rand.Next(0, 1)];
-            int[] errorB = new int[rand.Next(0, 1)];
-
-            int[] outputC, outputE, 
-                answer = new int[] { 68, 79, 85, 124, 144, 155, 157, 182, 196 };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, 3, -2.2, -0.5 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] answer3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] output1, output2, output3;
             // Act
-            outputC = main.Task_3_7(A, B, 3);
-            outputE = main.Task_3_7(errorA, errorB, 3);
+            output1 = main.Task_3_7(input1);
+            output2 = main.Task_3_7(input2);
+            output3 = main.Task_3_7(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
             {
-                Assert.AreEqual(answer[i], outputC[i]);
+                Assert.AreEqual(answer1[i], output1[i]);
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
         }
         [TestMethod()]
         public void Task_3_8Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 9, 10, 11, 15, 15 },
-                { 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 9, -11 },
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, -0.5, -2.2, 3 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] answer3 = new double[] { -1, -1, -1, -1, -2, -2, -4, -6, -8, -9 };
+            double[] output1, output2, output3;
             // Act
-            outputC = main.Task_3_8(matrix);
-            outputE = main.Task_3_8(error);
+            output1 = main.Task_3_8(input1);
+            output2 = main.Task_3_8(input2);
+            output3 = main.Task_3_8(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], output1[i]);
             }
-            Assert.IsNull(outputE);
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
         }
         [TestMethod()]
         public void Task_3_9Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1,    2,      -3,     7,      -5,     7,      7 },
-                { 5,    6,      -7,     8,      9,      9,      -11 },
-                { 9,    10,     11,     12,     13,     15,     15 },
-                { -13,  -30,    25,     25,     16,     17,     -19 },
-                { -6,   -5,     -1,     -2,     -3,     -4,     -6 }
-            };
-            int[,] error = new int[rand.Next(0, 3), rand.Next(8, 10)];
-            int[,] outputC, outputE, answer = new int[,] {
-                { 7,    7,      1,      2,      -5,     -3,   7 },
-                { 8,    9,      5,      6,      9,      -7,    -11 },
-                { 12,   15,     9,      10,     13,     11,    15 },
-                { 25,   17,     -13,    -30,    16,     25,  -19 },
-                { -2,   -4,     -6,     -5,     -3,     -1,   -6 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, -1.3, -2.2, -0.5, 2 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 6, 10 };
+            double[] input3 = new double[] { -5, -2, -8, -1, -9, -3, -2, -4, -6, -2 };
+            int answer1 = 4, answer2 = 3, answer3 = 3;
+            int output1, output2, output3;
             // Act
-            outputC = main.Task_3_9(matrix);
-            outputE = main.Task_3_9(error);
+            output1 = main.Task_3_9(input1);
+            output2 = main.Task_3_9(input2);
+            output3 = main.Task_3_9(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
-            {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
-            }
-            Assert.IsNull(outputE);
+            Assert.AreEqual(answer1, output1);
+            Assert.AreEqual(answer2, output2);
+            Assert.AreEqual(answer3, output3);
         }
         [TestMethod()]
         public void Task_3_10Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1,    2,      -3,     7,      -5,     7,      7 },
-                { 5,    6,      -7,     8,      9,      9,      -11 },
-                { 9,    10,     11,     12,     13,     15,     15 },
-                { -13,  -30,    25,     25,     16,     17,     -19 },
-                { -6,   -5,     -1,     -2,     -3,     -4,     -6 }
-            };
-            int[,] outputC, outputE, answer = new int[,] {
-                { 7,    7,      7,      2,      1,      -3,     -5 },
-                { -11,  -7,     5,      6,      8,      9,      9 },
-                { 15,   15,     13,     12,     11,     10,     9 },
-                { -30,  -19,    -13,    16,     17,     25,     25 },
-                { -1,   -2,     -3,     -4,     -5,     -6,     -6 }
-            };
+            double[] input1 = new double[] { 0, 1.5, 1, 3, 0, 0, 0, 0 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 0, 0, 0, 0, 0 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, 0, 0, 0, 0, 0 };
+            double[] answer1 = new double[] { 0, 0, 1.5, 1.5, 1, 1, 3, 3 };
+            double[] answer2 = new double[] { 5, 5, 2, 2, 8, 8, 1, 1, 9, 9 };
+            double[] answer3 = new double[] { -1, -1, -2, -2, -8, -8, -1, -1, -9, -9 };
+            double[] output1, output2, output3;
             // Act
-            outputC = main.Task_3_10(matrix);
+            output1 = main.Task_3_10(input1);
+            output2 = main.Task_3_10(input2);
+            output3 = main.Task_3_10(input3);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], output1[i]);
+            }
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
             }
         }
         [TestMethod()]
         public void Task_3_11Test()
         {
             // Arrange
-            int[,] matrix = {
-                { 1,    2,      -3,     7,      -5,     7,      7 },
-                { 5,    6,      -7,     8,      9,      9,      -11 },
-                { 9,    10,     11,     12,     13,     15,     15 },
-                { -13,  0,      25,     25,     16,     0,      -19 },
-                { -6,   -5,     -1,     -2,     -3,     -4,     0 }
-            };
-            int[,] outputC, outputE, answer = new int[,] {
-                { 1,    2,      -3,     7,      -5,     7,      7 },
-                { 5,    6,      -7,     8,      9,      9,      -11 },
-                { 9,    10,     11,     12,     13,     15,     15 }
-            };
+            double a1 = 1.5, a2 = -2.5, b1 = 3, b2 = 2.5, max1, min1, max2, min2;
+            int n1 = 4, n2 = 9;
+            double[] x1, x2, y1, y2;
+            double[] answer1 = new double[] { 1.5, 2, 2.5, 3 };
+            double[] answer2 = new double[] { 1.57, 1.40, 0.7, -0.57 };
+            double[] answer3 = new double[] { -2.5, -1.88, -1.25, -0.62, 0, 0.62, 1.25, 1.88, 2.5 };
+            double[] answer4 = new double[] { 0.7, 1.49, 1.50, 1.18, 1, 1.18, 1.50, 1.49, 0.7 };
+            double answer5 = 1.57, answer6 = -0.57, answer7 = 1.50, answer8 = 0.7;
             // Act
-            outputC = main.Task_3_11(matrix);
+            (x1, y1, max1, min1) = main.Task_3_11(a1, b1, n1);
+            (x2, y2, max2, min2) = main.Task_3_11(a2, b2, n2);
             // Assert
-            Assert.AreEqual(answer.GetLength(0), outputC.GetLength(0));
-            Assert.AreEqual(answer.GetLength(1), outputC.GetLength(1));
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Assert.AreEqual(answer1.Length, x1.Length);
+            Assert.AreEqual(answer2.Length, y1.Length);
+            Assert.AreEqual(answer3.Length, x2.Length);
+            Assert.AreEqual(answer4.Length, y2.Length);
+            for (int i = 0; i < x1.Length; i++)
             {
-                for (int j = 0; j < answer.GetLength(1); j++)
-                {
-                    Assert.AreEqual(answer[i, j], outputC[i, j]);
-                }
+                Assert.AreEqual(answer1[i], Math.Round(x1[i], 2));
+                Assert.AreEqual(answer2[i], Math.Round(y1[i], 2));
+            }
+            for (int i = 0; i < x2.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(x2[i], 2));
+                Assert.AreEqual(answer4[i], Math.Round(y2[i], 2));
+            }
+            Assert.AreEqual(answer5, Math.Round(max1, 2));
+            Assert.AreEqual(answer6, Math.Round(min1, 2));
+            Assert.AreEqual(answer7, Math.Round(max2, 2));
+            Assert.AreEqual(answer8, Math.Round(min2, 2));
+
+        }
+        [TestMethod()]
+        public void Task_3_12Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, 3 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] answer3 = new double[] { };
+            double[] output1, output2, output3;
+            // Act
+            output1 = main.Task_3_12(input1);
+            output2 = main.Task_3_12(input2);
+            output3 = main.Task_3_12(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], output1[i]);
+            }
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
+        }
+        [TestMethod()]
+        public void Task_3_13Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5 };
+            double[] answer2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10 };
+            double[] answer3 = new double[] { -1, -2, -8, -9, -4, -6 };
+            double[] output1, output2, output3;
+            // Act
+            output1 = main.Task_3_13(input1);
+            output2 = main.Task_3_13(input2);
+            output3 = main.Task_3_13(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+
+            for (int i = 0; i < output1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], output1[i]);
+            }
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], output2[i]);
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], output3[i]);
+            }
+        }
+        [TestMethod()]
+        public void Task_3_14Test()
+        {
+            // Arrange
+            double[] input1 = new double[] { 0, 1.5, 1, 3, -2.2, -0.5, 3 };
+            double[] input2 = new double[] { 5, 2, 8, 1, 9, 3, 7, 4, 10, 10 };
+            double[] input3 = new double[] { -1, -2, -8, -1, -9, -1, -1, -4, -6, -2 };
+            double[] answer1 = new double[] { -0.15, 0.42, 0.23, 1, -1, -0.35, 1 };
+            double[] answer2 = new double[] { -0.11, -0.78, 0.56, -1, 0.78, -0.56, 0.33, -0.33, 1, 1 };
+            double[] answer3 = new double[] { 1, 0.75, -0.75, 1, -1, 1, 1, 0.25, -0.25, 0.75 };
+            double[] output1, output2, output3;
+            // Act
+            output1 = main.Task_3_14(input1);
+            output2 = main.Task_3_14(input2);
+            output3 = main.Task_3_14(input3);
+            // Assert
+            Assert.AreEqual(answer1.Length, output1.Length);
+            Assert.AreEqual(answer2.Length, output2.Length);
+            Assert.AreEqual(answer3.Length, output3.Length);
+            for (int i = 0; i < output1.Length; i++)
+            {
+                Assert.AreEqual(answer1[i], Math.Round(output1[i], 2));
+            }
+            for (int i = 0; i < output2.Length; i++)
+            {
+                Assert.AreEqual(answer2[i], Math.Round(output2[i], 2));
+            }
+            for (int i = 0; i < output3.Length; i++)
+            {
+                Assert.AreEqual(answer3[i], Math.Round(output3[i], 2));
             }
         }
     }
