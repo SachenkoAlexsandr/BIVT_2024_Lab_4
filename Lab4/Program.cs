@@ -409,7 +409,30 @@
     public int[,] Task_1_25(int[,] X)
     {
         // code here
-
+        int k = 0;
+        int mi = 9999,mii = -1, ma = -9999, mai=-1;
+        for (int x =0; x < 6; x++)
+        {
+            for(int y =0; y< 7; y++)
+            {
+                if (X[x, y] < 0)
+                {
+                    k++;
+                }
+            }
+            if (k < mi) { mi = k; mii = x; }
+            if (k > ma) { ma = k; mai = x; }
+        }
+        int s = 0;
+        for (int x = 0; x < 6; x++)
+        {
+            for (int y = 0; y < 7; y++)
+            {
+                s = X[mii, y];
+                X[mii, y] = X[mai, y];
+                X[mai,y] = s;
+            }
+        }
         // end
 
         return X;
