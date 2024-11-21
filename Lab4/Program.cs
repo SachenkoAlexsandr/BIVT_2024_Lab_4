@@ -418,7 +418,7 @@ public class Program
             for (int j = 0; j < col; j++) {
                 if (D[i,j] < 0) {
                     minj = j;
-                    break;
+                    
                 }
             }
             if (minj == -1 || max == Int32.MinValue) {
