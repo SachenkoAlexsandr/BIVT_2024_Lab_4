@@ -26,7 +26,6 @@
     public static void Main()
     {
         Program program = new Program();
-        
     }
     #region Level 1
     public int Task_1_1(int[,] A)
@@ -185,9 +184,9 @@
         int s;
         for (int x = 0; x < A.GetLength(0); x++)
         {
-            if (A[x, 3] > ma)
+            if (A[x, 2] > ma)
             {
-                ma = A[x,3];
+                ma = A[x,2];
                 idex = x;
             }
         }
@@ -197,7 +196,7 @@
             A[3, y] = A[idex,y];
             A[idex,y] = s;
         }
-        foreach (var x in A) Console.Write($" {x}");
+        Matrix(A);
         // end
 
         return A;
@@ -334,18 +333,19 @@
     {
         // code here
         int i = -1;
-        for(int x = 0; x<n; x++)
+        for (int x = 0; x < n; x++)
         {
             double ma = -9999;
             i = -1;
-            for (int y = 0; y<m; y++)
+            for (int y = 0; y < m; y++)
             {
-                if (C[x,y] > ma)
+                if (C[x, y] > ma)
                 {
-                    ma = C[x,y];
+                    ma = C[x, y];
                     i = y;
                 }
             }
+            if(ma ==0) continue;
             for(int k = 0; k < i; k++)
             {
                 if (C[x,k] < 0)
@@ -995,37 +995,14 @@
             }
             c[x, 0] = k;
         }
-        int g;
         Matrix(c);
+        int g;
         bool flag = true;
         while (flag)
         {
             flag = false;
             for(int x = 0; x<a-1; x++)
             {
-                if (c[x, 0] == c[x + 1, 0])
-                {
-                    bool fl = false;
-                    for (int q = 1; q < b + 1; q++)
-                    {
-                        if (c[x, q] > c[x + 1, q])
-                        {
-                            fl = true;
-                            for (int y = 0; y < b + 1; y++)
-                            {
-                                g = c[x, y];
-                                c[x, y] = c[x + 1, y];
-                                c[x + 1, y] = g;
-                            }
-                            break;
-                        }
-                        if (c[x, q] < c[x + 1, q])
-                        {
-                            break;
-                        }
-                    }
-                    if (fl) { continue; }
-                }
                 if (c[x, 0] < c[x + 1, 0])
                 {
                     for (int y = 0; y < b + 1; y++)
@@ -1063,7 +1040,70 @@
     public int[,] Task_3_10(int[,] matrix)
     {
         // code here
+        // данная задача была решена через сортировку Radix sort(цифровая сортировка), и т.к я не смог придумать достаточно быстрый алгоритм (иначе какой смысл в этой сортировке) для отрицательных чисел, я просто добавлял к каждому числу 102. Если вас не затруднит прошу объяснить, почему при прибавление 100 алгоритм перестает работать.
+        Matrix(matrix);
 
+        int n = matrix.GetLength(1);
+        for (int x = 0; x < matrix.GetLength(0); x++)
+        {
+            for(int y = 0;y < matrix.GetLength(1); y++)
+            {
+                matrix[x,y] = matrix[x,y] +101;
+            }
+        }
+        if (n ==0 || 0 == matrix.GetLength(0)) return null;
+        for (int x = 0; x < matrix.GetLength(0); x++)
+        {
+            int ma = matrix[x, 0];
+            for (int i = 1; i < n; i++)
+            {
+                if (ma < matrix[x, i])
+                {
+                    ma = matrix[x, i];
+                }
+            }
+            for (int pl = 1; ma / pl != 0; pl *= 10)
+            {
+                int[] V = new int[n];
+                int[] k = new int[10];
+                for (int i = 0; i < n; i++)
+                {
+                    k[(matrix[x, i] / pl) % 10]++;
+                }
+                for (int i = 1; i < 10; i++)
+                {
+                    k[i] += k[i - 1];
+                }
+                for (int i = n - 1; i >= 0; i--)
+                {
+                    V[k[(matrix[x, i] / pl) % 10] - 1] = matrix[x, i];
+                    k[(matrix[x, i] / pl) % 10]--;
+                }
+                Console.WriteLine(string.Join(" ",V));
+                if (x % 2 == 1)
+                {
+                    for (int i = 0; i < n; i++)
+                    {
+                        matrix[x, i] = V[i];
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < n; i++)
+                    {
+                        matrix[x, i] = V[n - i - 1];
+                    }
+                }
+            }
+        }
+        for (int x = 0; x < matrix.GetLength(0); x++)
+        {
+            for (int y = 0; y < matrix.GetLength(1); y++)
+            {
+                matrix[x, y] = matrix[x, y] - 101;
+            }
+        }
+        Matrix(matrix);
         // end
 
         return matrix;
