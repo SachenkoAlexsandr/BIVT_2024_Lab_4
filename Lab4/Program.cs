@@ -3,8 +3,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Drawing;
+using System.Formats.Asn1;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
+using System.Xml.Schema;
 
 public class Program
 {
@@ -18,8 +20,8 @@ public class Program
     {
         int answer = 0;
         // code here
-
-        // end
+        
+        // end                       
 
         return answer;
     }
@@ -36,6 +38,11 @@ public class Program
     {
         int answer = 0;
         // code here
+
+        int n = A.GetLength(0);
+
+        for (int i = 0; i < n; i++)
+            answer += A[i, i];                    
 
         // end
 
@@ -64,8 +71,31 @@ public class Program
         int[] answer = default(int[]);
         // code here
 
-        // end
+        if (A.GetLength(0) != 4 || A.GetLength(1) != 7) 
+            return answer;
 
+        int[] min_idx_arr = new int[A.GetLength(0)];                
+
+        for (int i = 0, k = 0; i < A.GetLength(0); i++, k++)
+        {
+            int min_row_elem = A[i, 0];
+            int idx = 0;
+
+            for (int j = 0; j < A.GetLength(1); j++)
+            {
+                if (min_row_elem > A[i, j])
+                {
+                    min_row_elem = A[i, j];
+                    idx = j;
+                }                    
+            }
+            
+            min_idx_arr[k] = idx;
+        }
+
+        answer = min_idx_arr; 
+
+        // end
         return answer;
     }
     public int[] Task_1_7(int[,] A)
@@ -90,6 +120,32 @@ public class Program
     {
         // code here
 
+        if (A.GetLength(0) != 5 || A.GetLength(1) != 7)
+            return A;
+
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            int max_row_elem = A[i, 0], max_row_idx = 0;
+
+            for (int j = 0; j < A.GetLength(1); j++)
+                if (max_row_elem < A[i, j])
+                {
+                    max_row_elem = A[i, j];
+                    max_row_idx = j;
+                }
+
+            int tmp = A[i, 0];
+            A[i, 0] = A[i, max_row_idx];
+            A[i, max_row_idx] = tmp;
+        }
+
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            for (int j = 0; j < A.GetLength(1); j++)
+            {
+                Console.Write($"{A[i, j]} ");
+            }
+            Console.WriteLine();        }
         // end
 
         return A;
