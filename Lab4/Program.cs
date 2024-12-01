@@ -489,7 +489,47 @@ public class Program
     public double[,] Task_2_1(double[,] A)
     {
         // code here
-
+        if (A.GetLength(0) != 5 || A.GetLength(1) != 7) return null;
+        int[] M = new int[5]; 
+        for(int i=0; i<A.GetLength(0); i++)
+        {
+            double mx = -111111111;
+            int q = 0;
+            for(int j=0; j<A.GetLength(1); j++)
+            {
+                if (A[i, j] > mx)
+                {
+                    mx = A[i, j];
+                    q = j;
+                }
+            }
+            M[i] = q;
+        }
+        for (int i=0; i<A.GetLength(0); i++)
+        {
+            if (M[i]==0)
+            {
+                A[i, M[i] + 1] *= 2;
+            }
+            else if (M[i]==A.GetLength(1)-1)
+            {
+                A[i, M[i] - 1] *= 2;
+            }
+            else
+            {
+                if (A[i, M[i] + 1] > A[i, M[i] - 1])
+                {
+                    if(A[i, M[i] - 1]>0) A[i, M[i] - 1] *= 2;
+                    else A[i, M[i] - 1] /= 2;
+                }
+                
+                else
+                {
+                    if (A[i, M[i] + 1] > 0) A[i, M[i] + 1] *= 2;
+                    else A[i, M[i] + 1] /= 2;
+                }
+            }
+        }
         // end
 
         return A;
