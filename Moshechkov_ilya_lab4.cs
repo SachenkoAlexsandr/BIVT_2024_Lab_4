@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -376,7 +376,7 @@ public class Program
 
         }
         awg = Math.Round( awg / n , 2);
-        Z[n, b] = awg;
+        Z[a, b] = awg;
 
         for (int i = 0; i < Z.GetLength(0); i++)
         {
@@ -692,7 +692,7 @@ public class Program
             if (a > b)
                 A[index, i] = 0;
             else
-                A[index, i] = index;
+                A[index, i] = index+1;
         }
 
         for (int i = 0; i < A.GetLength(0); i++)
@@ -783,6 +783,7 @@ public class Program
         {
             double max = double.MinValue;
             int index = -1;
+            
 
             for (int i = 0; i < 7; i++)
             {
@@ -791,13 +792,14 @@ public class Program
                 {
                     max = A[i, j];
                     index = i;
+                    
                 }
             }
                 if (max < (A[0, j] + A[6, j]) / 2)
                 {
                     A[index, j] = (A[0, j] + A[6, j]) / 2;
                 }
-                else A[index, j] = index;
+                else A[index, j] = (index+1);
             
         }
 
