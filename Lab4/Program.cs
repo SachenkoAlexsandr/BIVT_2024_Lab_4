@@ -553,7 +553,7 @@ public class Program
                 else Kotr++;
             }
             if (Kpol >= Kotr) A[STR, i] = 0;
-            else A[STR, i] = STR+2;
+            else A[STR, i] = STR+1;
         }
         // end
 
@@ -625,7 +625,7 @@ public class Program
                 }
             }
             if (mx < sr) A[STR, i] = sr;
-            else A[STR, i] = STR+2;
+            else A[STR, i] = STR+1;
         }
 
         // end
