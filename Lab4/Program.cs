@@ -126,10 +126,10 @@ public class Program
     public int[,] Task_1_10(int[,] A)
     {
         // code here
+        if (A.GetLength(0) != 5 && A.GetLength(1) != 7) return default(int[,]);
         int[,] answer = default(int[,]);
         int max = A[0, 0];
         int n_max = 0;
-        if (A.GetLength(0) != 5 && A.GetLength(1) != 7) return default(int[,]);
         for (int i = 0; i < A.GetLength(0); i++)
         {
             if (A[i, 2] >= max)
@@ -540,7 +540,7 @@ public class Program
                 }
             }
             if (num_pos > num_neg) A[i_max, j] = 0;
-            else A[i_max, j] = i_max;
+            else A[i_max, j] = i_max+1;
         }
         // end
 
@@ -613,7 +613,7 @@ public class Program
                 }
             }
             if (A[i_max, j] < (A[0, j] + A[A.GetLength(0) - 1, j]) / 2) A[i_max, j] = (A[0, j] + A[A.GetLength(0) - 1, j]) / 2;
-            else A[i_max, j] = i_max;
+            else A[i_max, j] = i_max+1;
         }
         // end
 
