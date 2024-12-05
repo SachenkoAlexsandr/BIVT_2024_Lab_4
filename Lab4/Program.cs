@@ -342,9 +342,8 @@ public class Program
     }
     public int[,] Task_1_18(int[,] D, int n, int m)
     {
-        // code here
-        if (n!= D.GetLength(0) || m!= D.GetLength(1))
-        return null;
+        if (n != D.GetLength(0) || m != D.GetLength(1))
+            return null;
 
         for (int i = 0; i < n; i++)
         {
@@ -356,10 +355,7 @@ public class Program
             {
                 if (D[i, j] < 0)
                 {
-                    if (lastNegativeIndex == -1)
-                    {
-                        lastNegativeIndex = j; 
-                    }
+                    lastNegativeIndex = j; 
                 }
                 else
                 {
@@ -368,7 +364,7 @@ public class Program
                         maxBeforeNegative = D[i, j];
                         maxIndex = j;
                     }
-                }
+                }   
             }
 
             if (maxIndex != -1 && lastNegativeIndex != -1)
@@ -378,11 +374,12 @@ public class Program
                 D[i, lastNegativeIndex] = temp;
             }
         }
-
         // end
 
         return D;
     }
+
+        
     public double[,] Task_1_19(double[,] C, int n, int m)
     {
         // code here
