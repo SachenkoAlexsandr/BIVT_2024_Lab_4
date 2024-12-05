@@ -355,7 +355,6 @@ public class Program
 
         return A;
     }
-    #endregion
     public int[,] Task_2_2(int[,] A)
     {
         // code here
@@ -421,6 +420,7 @@ public class Program
 
         return A;
     }
+    #endregion
 
     #region Level 3
     public int[,] Task_3_1(int[,] matrix)
@@ -435,6 +435,26 @@ public class Program
     {
         // code here
 
+        if (matrix.GetLength(0) == 0 || matrix.GetLength(1) == 0 ||
+            matrix.GetLength(0) != matrix.GetLength(1))
+                return null;
+
+        int n = matrix.GetLength(0);
+
+        for (int i = 0; i < n; i++)
+        {
+            if (i == 0 || i == n - 1)
+                matrix[i, i] = 0;
+            else
+            {
+                matrix[0, i] = 0;
+                matrix[n - 1, i] = 0;
+
+                matrix[i, 0] = 0;
+                matrix[i, n - 1] = 0;
+            }
+        }
+
         // end
 
         return matrix;
@@ -442,7 +462,7 @@ public class Program
     public int[] Task_3_3(int[,] matrix)
     {
         int[] answer = default(int[]);
-        // code here
+        // code here        
 
         // end
 
@@ -451,6 +471,18 @@ public class Program
     public int[,] Task_3_4(int[,] matrix)
     {
         // code here
+
+        if (matrix.GetLength(0) == 0 || matrix.GetLength(1) == 0 ||
+            matrix.GetLength(0) != matrix.GetLength(1))
+            return null;
+
+        int n = matrix.GetLength(0);
+
+        for (int i = n / 2; i < n; i++)            
+            for (int j = 0; j < i + 1; j++)
+            {
+                matrix[i, j] = 1;
+            }
 
         // end
 
@@ -470,6 +502,31 @@ public class Program
         int[] lower = default(int[]);
         // code here
 
+        if (matrix.GetLength(0) == 0 || matrix.GetLength(1) == 0 ||
+            matrix.GetLength(0) != matrix.GetLength(1))
+            return (null, null);
+
+        int n = matrix.GetLength(0);
+        upper = new int[(n * n - n) / 2 + n];
+        lower = new int[(n * n - n) / 2];
+
+        for (int  i = 0, row_i = 0, col_j = 0;  i < n;  i++)
+            for (int j = 0, ri = row_i, cj = col_j; j < n; j++)
+            {
+                if (j >= i)
+                {
+                    upper[ri] = matrix[i, j];
+                    ri++;
+                }
+                else
+                {
+                    lower[cj] = matrix[i, j];
+                    cj++;
+                }
+                row_i = ri;
+                col_j = cj;
+            }
+
         // end
 
         return (upper, lower);
@@ -487,6 +544,8 @@ public class Program
     public int[,] Task_3_8(int[,] matrix)
     {
         // code here
+
+
 
         // end
 
@@ -517,4 +576,21 @@ public class Program
         return matrix;
     }
     #endregion
+
+    public void Display_matrix(int[,] A)
+    {
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            for (int j = 0; j < A.GetLength(1); j++)
+                Console.Write($"{A[i, j]} ");
+            Console.WriteLine();
+        }            
+    }
+    public void Display_array(int[] A)
+    {
+        for (int i = 0; i < A.GetLength(0); i++)
+        {
+            Console.Write($"{A[i]} ");
+        }
+    }
 }
