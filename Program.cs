@@ -12,47 +12,85 @@ public class Program
     public static void Main()
     {
         Program program = new Program();
-        //program.Task_1_3(new int[,] {{ 1, 2, 3, 4 },{ 5, 6, 7, 8 },{ 9, 10, 11, 12 },{ 13, 14, 15, 16 }});
-        //program.Task_1_6(new int[,] {{ 1, 2, 3, 4, 5, 6, 7 },{ 5, 6, 7, 8, -9, 10, 11 },{ 9, 10, -11, -12, -13, -14, -15 },{ -13, -14, 15, 16, 17, 18, -19 } });
-        //program.Task_1_9(new int[,] { { 1, 2, 3, 4, -5, -6, -7 },
+        //program.Task_1_3(new int[,] {
+        //{ 1, 2, 3, 4 },{ 5, 6, 7, 8 },{ 9, 10, 11, 12 },{ 13, 14, 15, 16 }});
+        //program.Task_1_6(new int[,] {
+        //        { 1, 2, 3, 4, 5, 6, 7 },
+        //        { 5, 6, 7, 8, -9, 10, 11 },
+        //        { 9, 10, -11, -12, -13, -14, -15 },
+        //        { -13, -14, 15, 16, 17, 18, -19 }});
+        //program.Task_1_9(new int[,] {
+        //        { 1, 2, 3, 4, -5, -6, -7 },
         //        { 5, 11, -17, 11, -10, 6, 5 },
         //        { -9, -10, -11, -14, -15, -16, 1 },
         //        { -9, -10, -11, -14, -15, -6, -2 },
         //        { -9, -10, -11, -14, -15, 6, 4 } });
-        //program.Task_1_12(new int[,] {{ 1, 2, 3, 4, -5, -6, -7 },
+        //program.Task_1_12(new int[,] {
+        //        { 1, 2, 3, 4, -5, -6, -7 },
         //        { 5, 11, -17, 11, -10, 6, 5 },
         //        { -9, -10, -11, -14, -15, -16, 1 },
         //        { -9, -10, -11, -14, 15, -6, -2 },
         //        { -9, -10, -11, -14, -15, 6, 4 },
         //        { 0, -2, -3, -4, -5, 0, 5 }});
-        //program.Task_1_15(new int[,] {{ 1, 2, -3, 4, -5, 6, 7 },
+        //program.Task_1_15(new int[,] {
+        //        { 1, 2, -3, 4, -5, 6, 7 },
         //        { 5, 6, -7, 8, 9, -10, -11 },
         //        { 9, 10, 11, -12, 13, 14, 15 },
         //        { -13, 14, 15, 16, 17, -18, -19 },
         //        { 0, -1, -2, -3, -4, -5, -6 }});
-        //program.Task_1_18(new int[,] {{ 1, 2, -3, 4, -5, 6, 7 },
+        //program.Task_1_18(new int[,] {
+        //        { 1, 2, -3, 4, -5, 6, 7 },
         //        { 5, 6, -7, 8, 9, -10, -11 },
         //        { 9, 10, 11, 12, 13, 14, 15 },
         //        { -13, 14, 15, 16, 17, -18, -19 },
         //        { 0, -1, -2, -3, -4, -5, -6 }}, 5, 7);
-        //program.Task_1_21(new int[,] {{ 1, 2, -3, 4, -5, 7, 0 },
+        //program.Task_1_21(new int[,] {
+        //        { 1, 2, -3, 4, -5, 7, 0 },
         //        { 5, 6, -7, 8, 9, -11, 0 },
         //        { 9, 10, 11, 12, 13, 15, 0 },
         //        { -13, 14, 15, 16, 17, -19,0 },
         //        { 0, -1, -2, -3, -4, -6, 0 }});
-        //program.Task_2_1(new double[,] {{ 1, 2, -3, 7, -5, 7, 7 },
+        //program.Task_1_24(new double[,] {
+        //        { 1, 2, -3, 4, -5 },
+        //        { 5, 6, -7, 8, 9, },
+        //        { 9, 10, 11, 12, 13 },
+        //        { -13, 14, 25, 16, 11 },
+        //        { 0, -1, -2, -3, -4 },
+        //        { 1, -1, 2, -2, 3 }});
+        //program.Task_1_27(new int[,] {
+        //        { 1, 2, -3, 7, -5, 7, 7 },
+        //        { 5, 6, -7, 8, 9, 9, -11 },
+        //        { 9, 10, 11, 12, 13, 15, 15 },
+        //        { -13, 14, 25, 25, 16, 17, -19 },
+        //        { 0, 0, -1, -2, -3, -4, -6 }});
+        //program.Task_1_30(new int[,] {
+        //        { 1, 2, -3, 7, -5},
+        //        { 5, 6, -7, 8, 9 },
+        //        { 9, 10, 11, 12, 13 },
+        //        { -13, 14, 25, 25, 16 },
+        //        { 0, 0, -1, -2, -3 }});
+        //program.Task_1_33(new int[,] {
+        //        { 1, 2, -3, 7, -5, 7, 7 },
+        //        { 5, 6, -7, 8, 9, 9, -11 },
+        //        { 9, 10, 11, 12, 13, 15, 15 },
+        //        { -13, 14, 25, 25, 16, 17, -19 },
+        //        { -6, -5, -1, -2, -3, -4, -6 }});
+        //program.Task_2_1(new double[,] {
+        //        { 1, 2, -3, 7, -5, 7, 7 },
         //        { 5, 6, -7, 8, 9, 9, -11 },
         //        { 9, 10, 11, 12, 13, 15, 15 },
         //        { -13, -30, 25, 25, 16, 17, -19 },
         //        { -6, -5, -1, -2, -3, -4, -6 }});
-        //program.Task_2_2(new int[,] {{ 1, 2, -3, 7, 7 },
+        //program.Task_2_2(new int[,] {
+        //        { 1, 2, -3, 7, 7 },
         //        { 5, 6, -7, 9, -11 },
         //        { 9, 10, 11, 15, 15 },
         //        { -13, 14, 25, 25, -19 },
         //        { 5, 6, -7, 8, 9},
         //        { -13, 14, 25, 25, -19 },
         //        { 0, 0, -1, -2, -3 }});
-        //program.Task_2_3(new int[,] {{ 1, 2, -3, 7, 7 },
+        //program.Task_2_3(new int[,] {
+        //        { 1, 2, -3, 7, 7 },
         //        { 5, 6, -7, 9, -11 },
         //        { 9, 10, 11, 15, 15 },
         //        { -13, 14, 25, 25, -19 },
@@ -62,15 +100,85 @@ public class Program
         //        { 5, 0, -1, 9, -1 },
         //        { 9, 10, 11, 2, 15 },
         //        { 0, 0, -1, -2, -3 }});
-        program.Task_2_4(new int[,] {{ 1, 2, -3, 7, 7 },
-                { 5, 6, -7, 9, -11 },
-                { 9, 10, 11, 15, 15 },
-                { -13, 14, 25, 25, -19 },
-                { 5, 6, -7, 8, 9},
-                { -13, 14, 25, 25, -19 },
-                { 0, 0, -1, -2, -3 }},
-                new int[] { 10, 20, 30, 0, -50 });
-
+        //program.Task_2_4(new int[,] {
+        //        { 1, 2, -3, 7, 7 },
+        //        { 5, 6, -7, 9, -11 },
+        //        { 9, 10, 11, 15, 15 },
+        //        { -13, 14, 25, 25, -19 },
+        //        { 5, 6, -7, 8, 9},
+        //        { -13, 14, 25, 25, -19 },
+        //        { 0, 0, -1, -2, -3 }},
+        //        new int[] { 10, 20, 30, 0, -50 });
+        //program.Task_2_5(new double[,] {
+        //        { 1, 2, -3, 7, 7 },
+        //        { 5, 6, -7, 9, -11 },
+        //        { 9, 10, 11, 15, 15 },
+        //        { -13, 14, 25, 25, -19 },
+        //        { 5, 6, -7, 8, 9},
+        //        { -13, 14, 25, 25, -19 },
+        //        { 0, 0, -1, -2, -3 }});
+        //program.Task_2_6(3);
+        //program.Task_2_7(new int[,] {
+        //        { 1, 2, -3, 7, 7, 0 },
+        //        { 5, 6, -7, 9, -11, 1 },
+        //        { 9, 10, 11, 15, 15, 2 },
+        //        { -13, 14, 25, 25, -19, 3 },
+        //        { 5, 6, -7, 8, 9, 4},
+        //        { 0, 0, -1, -2, -3, 5 }});
+        //program.Task_2_8(new int[,] {
+        //        { 1, 2, -3, 7, 7, 0 },
+        //        { 5, 6, -7, 9, -11, 1 },
+        //        { 9, 10, 11, 15, 15, 2 },
+        //        { -13, 14, 25, 25, -19, 3 },
+        //        { 5, 6, -7, 8, 9, 4},
+        //        { 0, 0, -1, -2, -3, -5 }});
+        //program.Task_2_9(new int[,] {
+        //        { 1, 2, -3, 7, 7, 0, -2 },
+        //        { 5, 6, -7, 9, -11, 1, 3 },
+        //        { 9, 10, 11, 15, 15, 2, 5 },
+        //        { -13, 14, 25, 25, -19, 3, -7 },
+        //        { 5, 6, -7, 8, 9, 4, 4},
+        //        { 0, 0, -1, -2, -3, -5, 0 }});
+        //program.Task_3_2(new int[,] {
+        //        { 1, 2, -3, 7, 7, 0 },
+        //        { 5, 6, -7, 9, -11, 1 },
+        //        { 9, 10, 11, 15, 15, 2 },
+        //        { -13, 14, 25, 25, -19, 3 },
+        //        { 5, 6, -7, 8, 9, 4},
+        //        { 0, 0, -1, -2, -3, 5 }});
+        //program.Task_3_4(new int[,] {
+        //        { 1, 2, -3, 7, 7 },
+        //        { 9, 10, 11, 15, 15 },
+        //        { -13, 14, 25, 25, -19 },
+        //        { 5, 6, -7, 8, 9 },
+        //        { 0, 0, -1, -2, -3 }});
+        //program.Task_3_6(new int[,] {
+        //        { 1, 2, -3, 7, 7, 0 },
+        //        { 5, 6, -7, 9, -11, 1 },
+        //        { 9, 10, 11, 15, 15, 2 },
+        //        { -13, 14, 5, 25, -19, 3 },
+        //        { 5, 6, -7, 8, -99, 4},
+        //        { 0, 0, -1, -2, -3, 5 }});
+        //program.Task_3_8(new int[,] {
+        //        { 1, 2, -3, 7, 7 },
+        //        { 5, 6, -7, 9, -11 },
+        //        { 9, 10, 11, 15, 15 },
+        //        { -13, 14, 25, 25, -19 },
+        //        { 5, 6, -7, 8, 9},
+        //        { -13, 14, 25, 25, -19 },
+        //        { 0, 0, -1, -2, -3 }});
+        //program.Task_3_10(new int[,] {
+        //        { 1,      2,     -3,     7,      -5,     7,       7 },
+        //        { 5,      6,     -7,     8,       9,     9,      -11 },
+        //        { 9,      10,    11,     12,     13,     15,      15 },
+        //        { -13,   -30,    25,     25,     16,     17,     -19 },
+        //        { -6,    -5,     -1,     -2,     -3,     -4,     -6 }});
+        //program.Task_3_11(new int[,] {
+        //        { 1,      2,      -3,     7,      -5,     7,       7 },
+        //        { 5,      6,      -7,     8,       9,     9,      -11  },
+        //        { 9,      10,     11,     12,     13,     15,     15 },
+        //        { -13,    0,      25,     25,     16,     0,      -19 },
+        //        { -6,     -5,     -1,     -2,     -3,     -4,      0 }});
 
     }
     #region Level 1
@@ -96,7 +204,13 @@ public class Program
     {
         int answer = 0;
         // code here
+
         int n = A.GetLength(0);
+
+        if (A == null || A.GetLength(0) != A.GetLength(1))
+        {
+            return 0;
+        }
 
         Console.WriteLine("Исходная матрица:");
         for (int i = 0; i < n; i++)
@@ -113,6 +227,7 @@ public class Program
             //answer += A[i, n - i - 1];
         }
         Console.WriteLine(answer);
+
         // end
 
         return answer;
@@ -137,12 +252,14 @@ public class Program
     }
     public int[] Task_1_6(int[,] A)
     {
-        //int[] answer = default(int[]);
-        // code here
-        int strok = A.GetLength(0), stolb = A.GetLength(1); 
-        int[] answer = new int [strok];
+        int[] answer = default(int[]);
 
-        if (A == null || A.GetLength(0) != 4 || A.GetLength(1) != 7)
+        // code here
+
+        int strok = A.GetLength(0), stolb = A.GetLength(1); 
+        answer = new int [strok];
+
+        if (A == null || strok != 4 || stolb != 7)
         {
             return null;
         }
@@ -201,9 +318,10 @@ public class Program
     public int[,] Task_1_9(int[,] A)
     {
         // code here
+
         int strok = A.GetLength(0), stolb = A.GetLength(1);
 
-        if (A == null || A.GetLength(0) != 5 || A.GetLength(1) != 7)
+        if (A == null || strok != 5 || stolb != 7)
         {
             return null;
         }
@@ -262,6 +380,7 @@ public class Program
     public int[,] Task_1_12(int[,] A)
     {
         // code here
+
         int strok = A.GetLength(0), stolb = A.GetLength(1);             
         
         if (A == null || strok != 6 || stolb != 7)
@@ -315,6 +434,7 @@ public class Program
         }
         Console.WriteLine();
         A = answer;
+
         // end
 
         return A;
@@ -339,9 +459,10 @@ public class Program
     public int[,] Task_1_15(int[,] A)
     {
         // code here
+
         int strok = A.GetLength(0), stolb = A.GetLength(1);
 
-        if (A == null || A.GetLength(0) != 5 || A.GetLength(1) != 7)
+        if (A == null || strok != 5 || stolb != 7)
         {
             return null;
         }
@@ -482,7 +603,42 @@ public class Program
     {
         // code here
 
+        int strok = H.GetLength(0), stolb = H.GetLength(1);
 
+        if (H == null || strok != 5 || stolb != 7)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(H[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i++)
+        {
+            int elemax = -999;
+            for (int j = 0; j < stolb; j++)
+            {
+                if (H[i, j] > elemax)
+                {
+                    elemax = H[i, j];
+                }
+            }            
+            H[i, stolb - 1] = H[i, stolb - 2];
+            H[i, stolb - 2] = elemax;
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(H[i, j] + " ");
+            Console.WriteLine();
+        }
 
         // end
 
@@ -508,6 +664,62 @@ public class Program
     {
         // code here
 
+        int strok = Y.GetLength(0), stolb = Y.GetLength(1);
+
+        if (Y == null || strok != 6 || stolb != 5)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(Y[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i++)
+        {
+            double elemax = -999, srednee = 0, k = 0; 
+            int jndmax = 0;
+            for (int j = 0; j < stolb; j++)            // поиск максимального
+            {
+                if (Y[i, j] > elemax)
+                {
+                    elemax = Y[i, j];
+                    jndmax = j;
+                }
+            }
+            for (int j = jndmax+1; j < stolb; j++)     // поиск среднего
+            {
+                if (Y[i, j] >= 0)
+                {
+                    k++;
+                    srednee += Y[i, j];
+                }                
+            }
+            if (srednee > 0)                           // вычисление среднего
+                srednee = srednee / k;
+            else
+                srednee = 0;
+            for (int j = 0; j < jndmax; j++)           // замена
+            {
+                if (Y[i, j] < 0)
+                {
+                    Y[i, j] = srednee;
+                }
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(Y[i, j] + " ");
+            Console.WriteLine();
+        }
+
         // end
 
         return Y;
@@ -531,6 +743,47 @@ public class Program
     public int[,] Task_1_27(int[,] B)
     {
         // code here
+
+        int strok = B.GetLength(0), stolb = B.GetLength(1);
+        int[] array = new int[strok];
+
+        if (B == null || strok != 5 || stolb != 7)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(B[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i++)
+        {
+            int elemax = -999;
+            for (int j = stolb-1; j >= 0; j--)           
+            {
+                if (B[i, j] > elemax)
+                {
+                    elemax = B[i, j];
+                }
+            }
+            array[i] = elemax;            
+        }
+        for (int i = 0; i < strok; i++)
+        {
+            B[i, 3] = array[strok - i - 1];
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(B[i, j] + " ");
+            Console.WriteLine();
+        }
 
         // end
 
@@ -556,6 +809,53 @@ public class Program
     {
         // code here
 
+        int strok = B.GetLength(0), stolb = B.GetLength(1);
+        int elemax = -999, indmax = 0, indotr = 0, reserv = 0;
+
+        if (B == null || strok != 5 || stolb != 5)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(B[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i++)      // поиск строки с максимальным на диагонали
+        {
+            if (B[i, i] > elemax)
+            {
+                elemax = B[i, i];
+                indmax = i;
+            }
+        }
+        for (int i = 0; i < strok; i++)      // поиск строки с первым отрицательным 
+        {                                    // в 3-м столбце
+            if (B[i, 2] < 0)
+            {
+                indotr = i;
+                break;
+            }
+        }
+        for (int j = 0; j < strok; j++)      // замена двух строк
+        {
+            reserv = B[indmax, j]; 
+            B[indmax, j] = B[indotr, j]; 
+            B[indotr, j] = reserv;
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(B[i, j] + " ");
+            Console.WriteLine();
+        }
+
         // end
 
         return B;
@@ -579,7 +879,53 @@ public class Program
     public int[] Task_1_33(int[,] A)
     {
         int[] answer = default(int[]);
+
         // code here
+
+        int strok = A.GetLength(0), stolb = A.GetLength(1), k = 0;
+
+        if (A == null || strok != 5 || stolb != 7)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(A[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+            {
+                if (A[i,j] < 0)
+                {
+                    k++;
+                }
+            }    
+        }
+        answer = new int[k];
+        for (int i = strok-1; i >= 0; i--)
+        {
+            for (int j = stolb-1; j >= 0; j--)
+            {
+                if (A[i, j] < 0)
+                {
+                    k--;
+                    answer[k] = A[i, j];
+                }
+            }
+        }
+
+        Console.WriteLine("Искомый массив:");
+        for (int i = 0; i < answer.Length; i++)
+        {
+            Console.Write(answer[i] + " ");
+        }
+        Console.WriteLine();
 
         // end
 
@@ -627,7 +973,7 @@ public class Program
                 else if (A[i, jndmax + 1] < 0)
                     A[i, jndmax + 1] /= 2;
             }
-            else if (jndmax == stolb-1 || A[i, jndmax - 1] < A[i, jndmax + 1])
+            else if (jndmax == stolb - 1 || A[i, jndmax - 1] < A[i, jndmax + 1])
             {
                 if (A[i, jndmax - 1] > 0)
                     A[i, jndmax - 1] *= 2;
@@ -686,7 +1032,7 @@ public class Program
                 if (kolvopol > kolvootr)
                     A[indmax, j] = 0;
                 else
-                    A[indmax, j] = indmax+1;
+                    A[indmax, j] = indmax + 1;
             }
         }
 
@@ -735,13 +1081,13 @@ public class Program
             if (indmax < (strok / 2))
             {
                 int sum = 0;
-                for (int i = indmax+1; i < strok; i++)
+                for (int i = indmax + 1; i < strok; i++)
                 {
                     sum += A[i, j];
                 }
                 A[0, j] = sum;
             }
-            
+
         }
 
         Console.WriteLine("Искомая матрица:");
@@ -759,9 +1105,6 @@ public class Program
     public int[,] Task_2_4(int[,] A, int[] B)
     {
         // code here
-        //Дана матрица A размера 7 × 5 и массив B размера 5.Заменить максимальный элемент столбца
-        //соответствующим элементом массива B, если этот элемент больше найденного максимального
-        //элемента столбца. В противном случае замены не производить
 
         int strok = A.GetLength(0), stolb = A.GetLength(1), dlina = B.Length;
 
@@ -784,13 +1127,78 @@ public class Program
         }
         Console.WriteLine();
 
+        for (int j = 0; j < stolb; j++)
+        {
+            int elemax = -999, indmax = 0;
+            for (int i = 0; i < strok; i++)
+            {
+                if (A[i, j] > elemax)
+                {
+                    elemax = A[i, j];
+                    indmax = i;
+                }
+            }
+            if (elemax < B[j])
+            {
+                A[indmax, j] = B[j];
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(A[i, j] + " ");
+            Console.WriteLine();
+        }
+
         // end
 
         return A;
     }
     public double[,] Task_2_5(double[,] A)
     {
-        // code here
+        // code here        
+
+        int strok = A.GetLength(0), stolb = A.GetLength(1);
+
+        if (A == null || strok != 7 || stolb != 5)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(A[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int j = 0; j < stolb; j++)
+        {
+            double elemax = -999; 
+            int indmax = 0;
+            for (int i = 0; i < strok; i++)
+            {
+                if (A[i, j] > elemax)
+                {
+                    elemax = A[i, j];
+                    indmax = i;
+                }
+            }
+            double polysumma = (A[0,j] + A[strok-1,j]) / 2;
+            if (polysumma > elemax) { A[indmax, j] = polysumma; }
+            else { A[indmax, j] = indmax+1; }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(A[i, j] + " ");
+            Console.WriteLine();
+        }
 
         // end
 
@@ -799,7 +1207,48 @@ public class Program
     public int[,] Task_2_6(int n)
     {
         int[,] answer = default(int[,]);
+
         // code here
+
+        if (n <= 0)
+        {
+            return null;
+        }
+        answer = new int[n, n * 3];
+
+        int strok = answer.GetLength(0), stolb = answer.GetLength(1), k = n, zanovo = 0;
+
+        for (int j = 0; j < stolb; j++)
+        {
+            for (int i = 0; i < strok; i++)
+            {
+                if (k == n) 
+                {
+                    answer[i, j] = 1;
+                    k = 0;
+                    zanovo += 1;
+                }
+                else
+                {
+                    answer[i, j] = 0;
+                    k += 1;
+                }
+                if (zanovo == n) 
+                { 
+                    k = n;
+                    zanovo = 0;
+                }
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(answer[i, j] + " ");
+            Console.WriteLine();
+        }
+
 
         // end
 
@@ -807,7 +1256,48 @@ public class Program
     }
     public int[,] Task_2_7(int[,] A)
     {
-        // code here
+        // code here 
+
+        int strok = A.GetLength(0), stolb = A.GetLength(1);
+
+        if (A == null || strok != 6 || stolb != 6)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(A[i, j] + " ");
+            Console.WriteLine();
+        }
+        int elemax = -999, indmax = 0;
+        for (int j = 0; j < stolb; j++)
+        {            
+            if (A[j, j] > elemax)
+            {
+                elemax = A[j, j];
+                indmax = j;
+            }
+        }
+
+        for (int i = 0; i < indmax; i++)
+        {
+            for (int j = 1; j < stolb; j++)
+            {
+                if (j > i) 
+                    A[i, j] = 0;
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(A[i, j] + " ");
+            Console.WriteLine();
+        }
 
         // end
 
@@ -816,6 +1306,49 @@ public class Program
     public int[,] Task_2_8(int[,] B)
     {
         // code here
+        
+        int strok = B.GetLength(0), stolb = B.GetLength(1);
+        
+        if (B == null || strok != 6 || stolb != 6)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(B[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i+=2)
+        {
+            int elemax1 = -999, elemax2 = -999, jnd1 = 0, jnd2 = 0;
+            for (int j = 0; j < stolb; j++)
+            {
+                if (B[i, j] > elemax1)
+                {
+                    elemax1 = B[i, j];
+                    jnd1 = j;
+                }
+                if (B[i+1, j] > elemax2)
+                {
+                    elemax2 = B[i+1, j];
+                    jnd2 = j;
+                }
+            }
+            B[i, jnd1] = elemax2;
+            B[i+1, jnd2] = elemax1;
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(B[i, j] + " ");
+            Console.WriteLine();
+        }
 
         // end
 
@@ -823,7 +1356,41 @@ public class Program
     }
     public int[,] Task_2_9(int[,] A)
     {
-        // code here
+        // code here 
+
+        int strok = A.GetLength(0), stolb = A.GetLength(1);
+
+        if (A == null || strok != 6 || stolb != 7)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(A[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i++)
+        {
+            int reserv = 0;
+            for (int j = 0; j < stolb/2; j++)
+            {
+                reserv = A[i, j];
+                A[i, j] = A[i, stolb - j -1];
+                A[i, stolb - j - 1] = reserv;
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(A[i, j] + " ");
+            Console.WriteLine();
+        }
 
         // end
 
@@ -844,6 +1411,45 @@ public class Program
     {
         // code here
 
+        int n = matrix.GetLength(0);
+
+        if (matrix == null || matrix.GetLength(0) != matrix.GetLength(1))
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i == 0 || i == n - 1)
+                {
+                    matrix[i, j] = 0;
+                }
+                else
+                {
+                    matrix[i, 0] = 0;
+                    matrix[i, n - 1] = 0;
+                }
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
         // end
 
         return matrix;
@@ -861,6 +1467,40 @@ public class Program
     {
         // code here
 
+        int n = matrix.GetLength(0);
+
+        if (matrix == null || matrix.GetLength(0) != matrix.GetLength(1))
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = n / 2; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i >= j)
+                {
+                    matrix[i, j] = 1;
+                }
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
         // end
 
         return matrix;
@@ -877,7 +1517,50 @@ public class Program
     {
         int[] upper = default(int[]);
         int[] lower = default(int[]);
+
         // code here
+
+        int n = matrix.GetLength(0), nomerupper = 0, nomerlower = 0;
+
+        if (matrix == null || matrix.GetLength(0) != matrix.GetLength(1))
+        {
+            return (null, null);
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        upper = new int[n * n / 2 + n / 2]; 
+        lower = new int[n * n - n * n / 2 - n / 2];
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i <= j)
+                    upper[nomerupper++] = matrix[i, j];
+                else
+                    lower[nomerlower++] = matrix[i, j];
+            }
+        }
+
+        Console.WriteLine("Элементы верхнего треугольника:");
+        for (int i = 0; i < upper.Length; i++)
+        {
+            Console.Write(upper[i] + " "); 
+        }
+        Console.WriteLine();
+        Console.WriteLine("Элементы нижнего треугольника:");
+        for (int i = 0; i < lower.Length; i++)
+        {
+            Console.Write(lower[i] + " ");
+        }
+        Console.WriteLine();
 
         // end
 
@@ -897,6 +1580,55 @@ public class Program
     {
         // code here
 
+        int strok = matrix.GetLength(0), stolb = matrix.GetLength(1);
+
+        if (matrix == null || strok != 7 || stolb != 5)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok-1; i++)
+        {
+            int kolvootriz1 = 0, kolvootriz2 = 0;
+            for (int j = 0; j < stolb; j++)
+            {
+                if (matrix[i, j] < 0)
+                    kolvootriz1++;
+            }
+            for (int j = 0; j < stolb; j++)
+            {
+                if (matrix[i+1, j] < 0)
+                    kolvootriz2++;
+            }
+            if (kolvootriz1 > kolvootriz2)
+            {
+                int reserv = 0;
+                for (int j = 0; j < stolb; j++)
+                {
+                    reserv = matrix[i+1, j];
+                    matrix[i+1, j] = matrix[i, j];
+                    matrix[i, j] = reserv;
+                }
+                i = -1;
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
         // end
 
         return matrix;
@@ -913,6 +1645,69 @@ public class Program
     {
         // code here
 
+        int strok = matrix.GetLength(0), stolb = matrix.GetLength(1);
+
+        if (matrix == null)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i += 2)
+        {
+            for (int j = 1; j < stolb; j++)
+            {
+                int key = matrix[i, j], k = j - 1;
+                while (k >= 0 && matrix[i, k] < key)
+                {
+                    matrix[i, k + 1] = matrix[i, k];
+                    k--;
+                }
+                matrix[i, k + 1] = key;
+            }
+        }
+        for (int i = 1; i < strok; i += 2)
+        {
+            for (int j = 1; j < stolb; j++)
+            {
+                int key = matrix[i, j], k = j - 1;
+                while (k >= 0 && matrix[i, k] > key)
+                {
+                    matrix[i, k + 1] = matrix[i, k];
+                    k--;
+                }
+                matrix[i, k + 1] = key;
+            }
+        }
+        if (strok / 2 == 0)
+        {
+            for (int j = 1; j < stolb; j++)
+            {
+                int key = matrix[strok - 1, j], k = j - 1;
+                while (k >= 0 && matrix[strok - 1, k] < key)
+                {
+                    matrix[strok - 1, k + 1] = matrix[strok - 1, k];
+                    k--;
+                }
+                matrix[strok - 1, k + 1] = key;
+            }
+        }
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
         // end
 
         return matrix;
@@ -920,6 +1715,64 @@ public class Program
     public int[,] Task_3_11(int[,] matrix)
     {
         // code here
+
+        int strok = matrix.GetLength(0), stolb = matrix.GetLength(1);
+        int minusstrok = 0;
+
+        if (matrix == null)
+        {
+            return null;
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
+
+        for (int i = 0; i < strok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+            {
+                if (matrix[i, j] == 0)
+                {
+                    minusstrok++;
+                    break;
+                }
+            }
+        }
+        int[,] array = new int[strok - minusstrok, stolb];
+        for (int i = 0, k = 0; i < strok; i++)
+        {
+            int flag = 0;
+            for (int j = 0; j < stolb; j++)
+            {
+                if (matrix[i, j] == 0)
+                {
+                    flag++;
+                    break;
+                }
+            }
+            for (int j = 0; j < stolb; j++)
+            {
+                if (flag == 0)
+                    array[k, j] = matrix[i, j];
+            }
+            if (flag == 0)
+                k++;
+        }
+
+        matrix = array;
+
+        Console.WriteLine("Искомая матрица:");
+        for (int i = 0; i < strok - minusstrok; i++)
+        {
+            for (int j = 0; j < stolb; j++)
+                Console.Write(matrix[i, j] + " ");
+            Console.WriteLine();
+        }
 
         // end
 
