@@ -621,7 +621,7 @@ public class Program
             if (countPos > countDif)
                 A[indMax, j] = 0;
             else
-                A[indMax, j] = indMax;
+                A[indMax, j] = indMax + 1;
         }
         // end
 
@@ -702,7 +702,7 @@ public class Program
             if (maxValue < sum)
                 A[indMax, j] = sum;
             else
-                A[indMax, j] = indMax;
+                A[indMax, j] = indMax + 1;
         }
         // end
 
@@ -1031,38 +1031,41 @@ public class Program
     public int[,] Task_3_8(int[,] matrix)
     {
         // code here
-        int AHeight = matrix.GetLength(0), AWeight = matrix.GetLength(1);
-
-        if (AHeight != 7 && AWeight != 5)
-            return default(int[,]);
-
-        int[] countPos = new int[AHeight];
-
+        int AHeight = matrix.GetLength(0), AWeight = matrix.GetLength(1); 
+ 
+        if (AHeight != 7 && AWeight != 5) 
+            return default(int[,]); 
+ 
+        int[] countPos = new int[AHeight]; 
+ 
+        for (int i = 0; i < AHeight; i++){ 
+            for (int j = 0; j < AWeight; j++){ 
+                if (matrix[i, j] > 0){ 
+                    countPos[i]++; 
+                } 
+            } 
+        } 
+ 
+        int maxVal = countPos[0], maxInd = 0;
         for (int i = 0; i < AHeight; i++){
-            for (int j = 0; j < AWeight; j++){
-                if (matrix[i, j] > 0){
-                    countPos[i]++;
-                }
+            if (countPos[i] > maxVal){
+                maxVal = countPos[i];
+                maxInd = i;
             }
         }
 
         for (int i = 0; i < AHeight - 1; i++){
-            int maxInd = i;
-            for (int j = i + 1; j < AHeight; j++){
-                if (countPos[maxInd] < countPos[j]){
-                    maxInd = j;
+            for (int j = 0; j < AHeight - i - 1; j++){
+                if (countPos[j] < countPos[j + 1]){
+                    for (int k = 0; k < 5; k++){
+                        int temp = matrix[j, k];
+                        matrix[j, k] = matrix[j + 1, k];
+                        matrix[j + 1, k] = temp;
+                    }
+                    int tempCount = countPos[j];
+                    countPos[j] = countPos[j + 1];
+                    countPos[j + 1] = tempCount;
                 }
-            }
-        
-            if (maxInd != i){
-                for (int k = 0; k < AWeight; k++){
-                    int temp = matrix[i, k];
-                    matrix[i, k] = matrix[maxInd, k];
-                    matrix[maxInd, k] = temp;
-                }
-                int tempCount = countPos[i];
-                countPos[i] = countPos[maxInd];
-                countPos[maxInd] = tempCount;
             }
         }
         // end
