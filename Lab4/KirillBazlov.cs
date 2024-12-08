@@ -985,6 +985,40 @@ public class Program
     {
         // code here
 
+        if (matrix.GetLength(0) == 0 || matrix.GetLength(1) == 0)
+            return null;
+
+        int n = matrix.GetLength(0), m = matrix.GetLength(1);
+        
+        bool[] zero_row_arr = new bool[n];        
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                if (matrix[i, j] == 0)               
+                    zero_row_arr[i] = true;
+
+        int zero_row_count = 0;
+        for (int i = 0; i < n; i++)
+            if (zero_row_arr[i] == true)
+                zero_row_count++;
+
+        if (zero_row_count == n)
+            return default(int[,]);
+
+        int[,] tmp = new int[n - zero_row_count, m];
+
+        for (int i = 0, k = 0; i < n; i++)
+        {
+            if (zero_row_arr[i] != true)
+            {
+                for (int j = 0; j < m; j++)                
+                    tmp[k, j] = matrix[i, j];
+                k++;
+            }
+        }            
+
+        matrix = tmp;
+
         // end
 
         return matrix;
@@ -1020,5 +1054,6 @@ public class Program
     {
         for (int i = 0; i < A.GetLength(0); i++)
             Console.Write($"{A[i]} ");
+
     }
 }
