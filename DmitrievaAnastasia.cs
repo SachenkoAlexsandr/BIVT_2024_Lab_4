@@ -72,8 +72,7 @@ public class Program
     {
         int[] answer = default(int[]);
         // code here
-
-        int m = A.GetLength(0), l = A.GetLength(0);
+        int m = A.GetLength(0), l = A.GetLength(1);
         answer = new int[m];
         if (m != 4 || l != 7) answer = default;
         else
