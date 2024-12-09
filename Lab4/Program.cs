@@ -920,10 +920,27 @@ public class Program
     {
         int[] answer = default(int[]);
         // code here
+        answer = new int[2*matrix.GetLength(0)-1];
+        int str = matrix.GetLength(0);
+        int sto = matrix.GetLength(1);
 
-        // end
+        if ( str != sto || str == 0) return null;
+        for (int x = -str + 1; x < str; x++)
+        {
+            int sum = 0;
+            for (int i = 0; i < str; i++)
+            {
+                int j = i + x;
+                if (j >= 0 && j < str)
+                {
+                    sum += matrix[i, j];
+                }
+            }
+            answer[x + str - 1] = sum;
+        }
+            // end
 
-        return answer;
+            return answer;
     }
     public int[,] Task_3_4(int[,] matrix)
     {
@@ -936,7 +953,45 @@ public class Program
     public int[,] Task_3_5(int[,] matrix, int k)
     {
         // code here
+        int str = matrix.GetLength(0);
+        int sto = matrix.GetLength(1);
+        if (str != sto || k < 1 || k > str) return null;
 
+        int Max = -1000;
+        int iMax = 0;
+        int jMax = 0;
+
+        for (int i = 0; i < str; i++)
+        {
+            for (int j = 0; j < sto; j++)
+            {
+                if (Math.Abs(matrix[i, j]) > Max)
+                {
+                    Max = Math.Abs(matrix[i, j]);
+                    iMax = i;
+                    jMax = j;
+                }
+            }
+        }
+
+        if (iMax != k - 1)
+        {
+            for (int i = 0; i < str; i++)
+            {
+                int temp = matrix[iMax, i];
+                matrix[iMax, i] = matrix[k - 1, i];
+                matrix[k - 1, i] = temp;
+            }
+        }
+        if (jMax != k - 1)
+        {
+            for (int i = 0; i < sto; i++)
+            {
+                int temp = matrix[i, jMax];
+                matrix[i, jMax] = matrix[i, k - 1];
+                matrix[i, k - 1] = temp;
+            }
+        }
         // end
 
         return matrix;
@@ -956,7 +1011,45 @@ public class Program
         int[] answer = default(int[]);
 
         // code here
+        answer = new int[n * n];
+        int[,] matrixA = new int[n, n];
+        int[,] matrixB = new int[n, n];
+        int ind = 0;
 
+        if ( n <= 0 || A.Length / 2 != n || B.Length / 2 != n) return null;
+
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = i; j < n; j++)
+            {
+                matrixA[i, j] = A[ind];
+                matrixB[i, j] = B[ind];
+                ind++;
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrixA[j, i] = matrixA[i, j];
+                matrixB[j, i] = matrixB[i, j];
+            }
+        }
+
+        ind = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                int sum = 0;
+                for (int l = 0; l < n; l++)
+                {
+                    sum = sum +( matrixA[i, l] * matrixB[l, j]);
+                }
+                answer[ind++] = sum;
+            }
+        }
         // end
 
         return answer;
@@ -972,7 +1065,35 @@ public class Program
     public int[,] Task_3_9(int[,] matrix)
     {
         // code here
-
+        int str = matrix.GetLength(0);
+        int sto = matrix.GetLength(1);
+        if (str != 5 || sto != 7) return null;
+        
+        for (int k = 0; k < sto; k++)
+        {
+            int count = 0;
+            for (int j = 0; j < sto; j++)
+            {
+                int count2 = 0;
+                for (int i = 0; i < str; i++)
+                {
+                    if (matrix[i, j] < 0)
+                    {
+                        count2++;
+                    }
+                }
+                if (j != 0 && count2 < count)
+                {
+                    for (int i = 0; i < str; i++)
+                    {
+                        int temp = matrix[i, j];
+                        matrix[i, j] = matrix[i, j - 1];
+                        matrix[i, j - 1] = temp;
+                    }
+                }
+                else { count = count2; }
+            }
+        }
         // end
 
         return matrix;
@@ -988,7 +1109,44 @@ public class Program
     public int[,] Task_3_11(int[,] matrix)
     {
         // code here
-
+        int str = matrix.GetLength(0);
+        int sto = matrix.GetLength(1);
+        int count = 0;
+        if (matrix == null) return default; ;
+        for (int i = 0; i < str; i++)
+        {
+            for (int j = 0; j < sto; j++)
+            {
+                if (matrix[i, j] == 0)
+                {
+                    count++;
+                    break;
+                }
+            }
+        }
+        int[,] newMatr = new int[str - count, sto];
+        int k = 0;
+        for (int i = 0; i < str; i++)
+        {
+            count = 0;
+            for (int j = 0; j < sto; j++)
+            {
+                if (matrix[i, j] == 0)
+                {
+                    count++;
+                    break;
+                }
+            }
+            if (count == 0)
+            {
+                for (int j = 0; j < sto; j++)
+                {
+                    newMatr[k, j] = matrix[i, j];
+                }
+                k++;
+            }
+        }
+        matrix = newMatr;
         // end
 
         return matrix;
