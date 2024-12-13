@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
@@ -166,14 +166,14 @@ public class Program
     {
         // code here
         int n = A.GetLength(0), m = A.GetLength(1);
-        int min = 10000, mini = 0;
+        int max = -10000, maxi = 0;
         if (n != 5 || m != 7) return null;
         for (int i = 0; i < n; i++)
         {
-            if (A[i, 2] < min)
+            if (A[i, 2] > max)
             {
-                min = A[i, 2];
-                mini = i;
+                max = A[i, 2];
+                maxi = i;
             }
         }
         int x = 0;
@@ -181,8 +181,8 @@ public class Program
             for(int j = 0; j < m; j++)
 
             {
-                x = A[mini, j];
-                A[mini, j] = A[3,j];
+                x = A[maxi, j];
+                A[maxi, j] = A[3,j];
                 A[3,j] = x;
             }
         // end
@@ -631,26 +631,26 @@ public class Program
         // code here
         for (int j = 0; j < A.GetLength(1); j++)
         {
-            int max = -9999, maxi = 0, k = 0;
+            int maxi = 0, k1 = 0, k2 = 0;
             for (int i = 0; i < A.GetLength(0); i++)
             {
-                if (A[i, j] > max)
-                {
-                    max = A[i, j];
-                    maxi = i;
-                }
                 if (A[i, j] > 0)
                 {
-                    k++;
+                    k1++;
                 }
+                else if (A[i, j] < 0)
+                {
+                    k2++;
+                }
+                if (A[maxi, j] < A[i, j]) maxi = i;
             }
-            if (k >= 4)
+            if (k1 >= k2)
             {
                 A[maxi, j] = 0;
             }
             else
             {
-                A[maxi, j] = maxi;
+                A[maxi, j] = maxi+1;
             }
         }
         
@@ -722,7 +722,8 @@ public class Program
         if (n != 7 || m != 5) return null;
         for (int j = 0; j < A.GetLength(1); j++)
         {
-            double max = -10000, s = 0; ; int maxi = 0;
+            double x = A[0,j] + A[n-1,j], max = -100000;
+            int maxi = 0;
             for (int i = 0; i < A.GetLength(0); i++)
             {
                 if (A[i, j] > max)
@@ -731,11 +732,10 @@ public class Program
                     maxi = i;
                 }
             }
-            s = (A[0, j] + A[6, j]) / 2;
-            if (s > max)
-                A[maxi, j] = s;
+            if (A[maxi,j] < x)
+                A[maxi, j] = x;
             else
-                A[maxi, j] = maxi;
+                A[maxi, j] = maxi+1;
         }
             // end
 
@@ -848,7 +848,7 @@ public class Program
         }
         // end
 
-        return A;
+        return output;
     }
 
     #region Level 3
