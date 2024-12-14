@@ -656,25 +656,29 @@ public class Program
     {
         // code here
         int n = A.GetLength(0), m = A.GetLength(1);
-        if (n != 7 || m != 5) return null;
-        for (int j = 0; j < m; j++)
+        if (A == null || A.GetLength(0) != 7 || A.GetLength(1) != 5) return null;
+        for (int y = 0; y < A.GetLength(1); y++)
         {
-            int iMax = 0, countP = 0, countN = 0;
-            for (int i = 0; i < n; i++)
+            int countPol = 0;
+            int countOtr = 0;
+            int Max = 0;
+            int IndexMax = 0;
+            for (int i = 0; i < A.GetLength(0); i++)
             {
-                if (A[i, j] > 0) countP++;
-                if (A[i, j] < 0) countN++;
-                if (A[i, j] > A[iMax, j]) iMax = i;
+                if (A[i, y] >= 0) countPol++;
+                else countOtr++;
+                if (A[i, y] > Max)
+                {
+                    Max = A[i, y];
+                    IndexMax = i;
+                }
             }
-            if (countP > countN)
-            {
-                A[iMax, j] = 0;
-            }
-            else A[iMax, j] = iMax;
+            if (countOtr < countPol) A[IndexMax, y] = 0;
+            else A[IndexMax, y] = IndexMax + 1;
         }
-        // end
+                // end
 
-        return A;
+                return A;
     }
     public int[,] Task_2_3(int[,] A)
     {
@@ -699,6 +703,7 @@ public class Program
             if (iMax < 5) A[0, j] = sumAfterMax;
 
         }
+        
         // end
 
         return A;
@@ -727,29 +732,29 @@ public class Program
     public double[,] Task_2_5(double[,] A)
     {
         // code here
-        if (A.GetLength(0) != 7 || A.GetLength(1) != 5)
+        int AHeight = A.GetLength(0), AWeight = A.GetLength(1);
+
+        if (AHeight < 3)
+            return default(double[,]);
+
+        for (int j = 0; j < AWeight; j++)
         {
-            return null;
-        }
-        for (int y = 0; y < 5; y++)
-        {
-            double m = -99999;
-            int i = -1;
-            for (int x = 0; x < 7; x++)
+            double maxValue = A[0, j];
+            int indMax = 0;
+            double sum = (A[0, j] + A[AHeight - 1, j]) / 2;
+            for (int i = 0; i < AHeight; i++)
             {
-                if (A[x, y] > m)
+                if (A[i, j] > maxValue)
                 {
-                    m = A[x, y]; i = x;
+                    indMax = i;
+                    maxValue = A[i, j];
                 }
             }
-            if (m < (A[0, y] + A[6, y]) / 2)
-            {
-                A[i, y] = (A[0, y] + A[6, y]) / 2;
-            }
+
+            if (maxValue < sum)
+                A[indMax, j] = sum;
             else
-            {
-                A[i, y] = i;
-            }
+                A[indMax, j] = indMax + 1;
         }
         // end
 
@@ -1090,7 +1095,43 @@ public class Program
     public int[,] Task_3_11(int[,] matrix)
     {
         // code here
+        int count = 0;
+        for (int y = 0; y < matrix.GetLength(0); y++)
+        {
+            bool boom = false;
+            int nomer = 0;
+            for (int y1 = 0; y1 < matrix.GetLength(1); y1++)
+            {
+                if (matrix[y, y1] == 0)
+                {
+                    boom = true;
+                    nomer = y;
+                    count++;
+                    break;
+                }
+            }
+            if (boom == true)
+            {
+                for (int P = nomer; P < matrix.GetLength(0) - 1; P++)
+                {
+                    for (int y1 = 0; y1 < matrix.GetLength(1); y1++)
+                    {
+                        matrix[P, y1] = matrix[P + 1, y1];
+                    }
+                }
+            }
+        }
+        System.Console.WriteLine(count);
+        int[,] kek = new int[matrix.GetLength(0) - count, matrix.GetLength(1)];
+        for (int i = 0; i < kek.GetLength(0); i++)
+        {
 
+            for (int j = 0; j < kek.GetLength(1); j++)
+            {
+                kek[i, j] = matrix[i, j];
+            }
+        }
+        matrix = kek;
         // end
 
         return matrix;
