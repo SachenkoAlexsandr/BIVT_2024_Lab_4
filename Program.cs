@@ -130,7 +130,7 @@ public class Program
             if (count > 0) answer[i] = Math.Round(sum / count, 2);
 
             else answer[i] = 0;
-            
+
         }
 
         // end
@@ -173,18 +173,18 @@ public class Program
             }
         }
 
-         n = A.GetLength(0) - 1;
-         m = A.GetLength(1);
+        n = A.GetLength(0) - 1;
+        m = A.GetLength(1);
         int[,] Matrix = new int[n, m];
 
         for (int k = 0, newRow = 0; k < A.GetLength(0); k++)
         {
             if (k == Index) continue;
-            
+
 
             for (int col = 0; col < m; col++)
                 Matrix[newRow, col] = A[k, col];
-            
+
 
             newRow++;
         }
@@ -219,7 +219,7 @@ public class Program
         int m = A.GetLength(1);
 
         if (n != 4 || m != 3) return answer;
-        
+
 
 
         answer = new int[m];
@@ -230,7 +230,7 @@ public class Program
             for (int i = 0; i < n; i++)
             {
                 if (A[i, j] < 0) count++;
-                
+
             }
             answer[j] = count;
         }
@@ -468,7 +468,7 @@ public class Program
             int rez = Math.Abs(F[1, i]);
             if (rez < min)
             {
-                min= rez;
+                min = rez;
                 min_i = i;
             }
         }
@@ -570,8 +570,8 @@ public class Program
     public double[,] Task_2_1(double[,] A)
     {
         // code here
-        int n = A.GetLength(0); 
-        int m = A.GetLength(1);  
+        int n = A.GetLength(0);
+        int m = A.GetLength(1);
 
         if (A == null || n != 5 || m != 7) return null;
 
@@ -594,16 +594,16 @@ public class Program
                 if (A[row, maxIndex - 1] < A[row, maxIndex + 1])
                 {
                     if (A[row, maxIndex - 1] < 0) A[row, maxIndex - 1] /= 2;
-                    
+
                     else A[row, maxIndex - 1] *= 2;
 
-                    
-                    
+
+
                 }
                 else
                 {
                     if (A[row, maxIndex + 1] < 0) A[row, maxIndex + 1] /= 2;
-                    
+
                     else A[row, maxIndex + 1] *= 2;
 
                 }
@@ -663,7 +663,7 @@ public class Program
                 {
                     neg++;
                 }
-              
+
                 if (currentElement > A[maxIndex, column])
                 {
                     maxIndex = row;
@@ -734,7 +734,7 @@ public class Program
 
 
             if (B[i] > maxE) A[max_r, i] = B[i];
-            
+
         }
         // end
 
@@ -744,7 +744,7 @@ public class Program
     {
         // code here
         int n = A.GetLength(0), m = A.GetLength(1);
-        if (n != 7 || m != 5) return null; 
+        if (n != 7 || m != 5) return null;
 
         for (int i = 0; i < m; i++)
         {
@@ -766,7 +766,7 @@ public class Program
             if (maxE < halfSum) A[max_Row, i] = halfSum;
 
             else A[max_Row, i] = max_Row + 1;
-            
+
         }
 
 
@@ -855,12 +855,12 @@ public class Program
             {
                 if (B[i + 1, j] > B[row2, col2])
                 {
-                    col2 = j;  
+                    col2 = j;
                 }
             }
-           
+
             (B[row1, col1], B[row2, col2]) = (B[row2, col2], B[row1, col1]);
-            
+
         }
 
 
@@ -893,7 +893,7 @@ public class Program
     public int[,] Task_3_1(int[,] matrix)
     {
         // code here
-        
+
 
         // end
 
@@ -902,7 +902,7 @@ public class Program
     public int[,] Task_3_2(int[,] matrix)
     {
         // code here
-        int n = matrix.GetLength(0); 
+        int n = matrix.GetLength(0);
 
         if (n != matrix.GetLength(1))
             return null;
@@ -911,8 +911,8 @@ public class Program
         {
             matrix[i, 0] = 0;
             matrix[i, n - 1] = 0;
-            matrix[0, i] = 0; 
-            matrix[n - 1, i] = 0; 
+            matrix[0, i] = 0;
+            matrix[n - 1, i] = 0;
         }
 
 
@@ -937,11 +937,11 @@ public class Program
 
         if (n != matrix.GetLength(1))
             return null;
-        for (int k = n / 2; k < n; k++) 
+        for (int k = n / 2; k < n; k++)
             for (int l = 0; l <= k; l++)
                 matrix[k, l] = 1;
-            
-        
+
+
 
 
         // end
@@ -966,8 +966,8 @@ public class Program
 
         if (n != m) return (null, null);
 
-        int upperCount = (n * (n + 1)) / 2; 
-        int lowerCount = (n * (n - 1)) / 2; 
+        int upperCount = (n * (n + 1)) / 2;
+        int lowerCount = (n * (n - 1)) / 2;
 
         upper = new int[upperCount];
         lower = new int[lowerCount];
@@ -977,15 +977,15 @@ public class Program
 
         for (int i = 0; i < n; i++)
         {
-            for (int j = i; j < n; j++) 
+            for (int j = i; j < n; j++)
             {
                 upper[upperIndex++] = matrix[i, j];
             }
         }
 
-        for (int i = 1; i < n; i++)  
+        for (int i = 1; i < n; i++)
         {
-            for (int j = 0; j < i; j++) 
+            for (int j = 0; j < i; j++)
             {
                 lower[lowerIndex++] = matrix[i, j];
             }
@@ -1009,16 +1009,15 @@ public class Program
     {
         // code here
         int n = matrix.GetLength(0);
-        int m = matrix.GetLength(1);  
+        int m = matrix.GetLength(1);
+        if (n != 7 || m != 5) return null;
 
-        if (n == 0 || m == 0) return null;  
-
-        int[] pos = new int[n];
-        int[] rowI = new int[n];
+        int[] pos = new int[n]; 
+        int[] rowIndices = new int[n];  
 
         for (int i = 0; i < n; i++)
         {
-            rowI[i] = i;
+            rowIndices[i] = i;
         }
 
         for (int i = 0; i < n; i++)
@@ -1038,19 +1037,15 @@ public class Program
             {
                 if (pos[j] < pos[j + 1])
                 {
-
                     (pos[j], pos[j + 1]) = (pos[j + 1], pos[j]);
-
-                    (rowI[j], rowI[j + 1]) = (rowI[j + 1], rowI[j]);
-                    
+                    (rowIndices[j], rowIndices[j + 1]) = (rowIndices[j + 1], rowIndices[j]);
                 }
             }
         }
-
         int[,] result = new int[n, m];
         for (int i = 0; i < n; i++)
         {
-            int rowIndex = rowI[i];
+            int rowIndex = rowIndices[i];
             for (int j = 0; j < m; j++)
             {
                 result[i, j] = matrix[rowIndex, j];
@@ -1105,7 +1100,7 @@ public class Program
                         }
                     }
             }
-        
+
 
 
 
@@ -1135,7 +1130,7 @@ public class Program
             }
             if (!zero) Count++;
         }
-        
+
 
         if (Count == 0) return new int[0, 0];
 
