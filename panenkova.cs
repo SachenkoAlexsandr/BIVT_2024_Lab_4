@@ -1165,11 +1165,47 @@ public class Program
     }
     public int[,] Task_3_11(int[,] matrix)
     {
+        int p = matrix.GetLength(0), k = matrix.GetLength(1);
+        int sh = 0;
         // code here
-
-        // end
-
-        return matrix;
+        for (int i = 0; i < p; i++)
+        {
+            bool nuli = false;
+            for (int j = 0; j < k; j++)
+            {
+                if (matrix[i, j] == 0)
+                {
+                    nuli = true;
+                }
+            }
+            if (nuli == true)
+            {
+                sh++;
+            }
+        }
+        int[,] novenkii = new int[p - sh, k];
+        int shnovenkii = 0;
+        for (int i = 0; i < p; i++)
+        {
+            bool nul = false;
+            for (int j = 0; j < k; j++)
+            {
+                if (matrix[i, j] == 0)
+                {
+                    nul = true;
+                }
+            }
+            if (nul == false)
+            {
+                for (int j = 0; j < k; j++)
+                {
+                    novenkii[shnovenkii, j] = matrix[i, j];
+                }
+                shnovenkii++;
+            }
+        }
+        return novenkii;
+        // end+
     }
     #endregion
 }
