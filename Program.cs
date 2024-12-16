@@ -140,9 +140,9 @@ public class Program
             for(int j =1;j<j1;j++)
             {
                 if (A[i, j] > A[i, jmax])
-                    {            
-                        jmax = j;
-                    }
+                {            
+                    jmax = j;
+                }
             }
             if (jmax != 0)
             {
@@ -150,6 +150,7 @@ public class Program
                 A[i, 0] = A[i, jmax];
                 A[i, jmax] = t;
             }
+        }
 
 }
    
