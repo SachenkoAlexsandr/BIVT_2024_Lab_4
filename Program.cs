@@ -131,23 +131,28 @@ public class Program
     public int[,] Task_1_9(int[,] A)
     {
         // code here
-        int jmax =0;
         int i1 = A.GetLength (0);
         int j1 = A.GetLength (1);
         if (i1 != 5 || j1 != 7) return null;
         for(int i = 0;i < i1;i++)
         {
+            int jmax = 0;
             for(int j =1;j<j1;j++)
             {
                 if (A[i, j] > A[i, jmax])
-                {
-                    jmax = j;
-                }
+                    {            
+                        jmax = j;
+                    }
             }
-            int t = A[i,jmax];
-            A[i,jmax] = A[i,0];
-            A[i, 0] = t;
-        }
+            if (jmax != 0)
+            {
+                int t = A[i, 0];
+                A[i, 0] = A[i, jmax];
+                A[i, jmax] = t;
+            }
+
+}
+   
 
         // end
 
