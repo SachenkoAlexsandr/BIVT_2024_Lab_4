@@ -808,8 +808,29 @@ public class Program
     }
     public int[,] Task_3_11(int[,] matrix)
     {
-        // code here
-
+        // code here       
+        if (matrix == null || matrix.GetLength(0) != 5 || matrix.GetLength(1) != 7) { return null; }
+        bool[] skip = new bool[matrix.GetLength(0)];
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                if (matrix[i, j] == 0) { skip[i] = true; break; }
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < matrix.GetLength(0); i++) { if (skip[i] == false) { count++; } }
+        int[,] matrix1 = new int[count, matrix.GetLength(1)];
+        for (int i1 = 0, k = 0; i1 < matrix.GetLength(0); i1++, k++)
+        {
+            if (skip[i1] == true) { k--; continue; }
+            for (int j1 = 0; j1 < matrix.GetLength(1); j1++)
+            {
+                matrix1[k, j1] = matrix[i1, j1];
+            }
+        }
+        matrix = matrix1;
+        
         // end
 
         return matrix;
