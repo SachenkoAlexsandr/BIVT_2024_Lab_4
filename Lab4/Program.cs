@@ -662,36 +662,38 @@ public class Program
     public int[,] Task_2_2(int[,] A)
     {
         // code here
+        int m = A.GetLength(0);
+        int n = A.GetLength(1);
         if (A.GetLength(0) != 7 || A.GetLength(1) != 5)
         {
             return null;
         }
-        for (int y = 0; y < 5; y++)
+        for(int i = 0; i < n; i++)
         {
-            int p = 0, o = 0, m = -9999, i = -1;
-            for (int x = 0; x < 7; x++)
+            int kp = 0, kn = 0, max = int.MinValue, index = 0; 
+            for(int j = 0; j < m; j++)
             {
-                if (A[x, y] > 0)
+                if(A[j, i] > 0)
                 {
-                    p++;
+                    kp++;
                 }
                 else
                 {
-                    o++;
+                    kn++;
                 }
-                if (A[x, y] > m)
+                if (A[j, i] > max)
                 {
-                    m = A[x, y];
-                    i = x;
+                    max = A[j, i];
+                    index = j;
                 }
             }
-            if (o < p)
+            if(kp > kn)
             {
-                A[i, y] = 0;
+                A[index, i] = 0;
             }
             else
             {
-                A[i, y] = i;
+                A[index, i] = index + 1;
             }
         }
         // end
@@ -769,7 +771,7 @@ public class Program
             }
             else
             {
-                A[i, y] = i;
+                A[i, y] = i + 1;
             }
         }
         // end
