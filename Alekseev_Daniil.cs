@@ -1167,7 +1167,7 @@ public class Program
         {
             if (array[i] == 1)
                 continue;
-            p += 1;
+            cnt += 1;
             for (int j = 0; j < matrix.GetLength(1); j++)
                 answer[cnt, j] = matrix[i, j];
         }
